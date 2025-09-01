@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frequently Asked Questions - Food4Nigeria</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+      .dropdown-menu {
+        display: none;
+        animation: fadeIn 0.3s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      #mobile-menu {
+        transition: transform 0.3s ease-in-out;
+      }
+      #mobile-menu.hidden {
+        transform: translateX(-100%);
+      }
+      .mobile-submenu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-in-out;
+      }
+      #toast-notification {
+        transition: opacity 0.3s, transform 0.3s;
+      }
+      .faq-hero-bg {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0.6)
+          ),
+          url('https://images.unsplash.com/photo-1599026402452-f41e54c86144?q=80&w=2070&auto=format&fit=crop');
+        background-size: cover;
+        background-position: center;
+      }
+
+      /* FAQ Accordion specific styles */
+      .accordion-button {
+        width: 100%;
+        text-align: left;
+        padding: 1rem 1.25rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 600;
+        color: #374151;
+        background-color: #f9fafb;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+      .accordion-button:hover {
+        background-color: #f3f4f6;
+      }
+      .accordion-button[aria-expanded='true'] {
+        background-color: #d1fae5; /* green-100 */
+        color: #047857; /* green-800 */
+        border-color: #34d399; /* green-400 */
+      }
+      .accordion-button svg {
+        transition: transform 0.2s ease;
+      }
+      .accordion-button[aria-expanded='true'] svg {
+        transform: rotate(180deg);
+      }
+      .accordion-content {
+        padding: 0 1.25rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out;
+        background-color: #fff;
+        border-left: 1px solid #e5e7eb;
+        border-right: 1px solid #e5e7eb;
+        border-bottom: 1px solid #e5e7eb;
+        border-bottom-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+        color: #4b5563; /* gray-700 */
+      }
+      .accordion-content p {
+        padding: 1rem 0;
+      }
+      .accordion-content.open {
+        max-height: 500px; /* Adjust as needed, should be larger than actual content */
+        transition: max-height 0.4s ease-in;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <header class="bg-white shadow-md sticky top-0 z-50">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <div class="flex-shrink-0">
+            <a href="index.html" class="text-2xl font-bold text-green-700"
+              >Food<span style="color: grey"><sub>4</sub></span
+              >Nigeria</a
+            >
+          </div>
+
+          <nav class="hidden lg:flex items-center space-x-8">
+            <a
+              href="index.html"
+              class="text-gray-600 hover:text-green-700 transition-colors duration-300"
+              >Home</a
+            >
+
+            <div class="relative dropdown">
+              <button
+                class="flex items-center text-gray-600 hover:text-green-700 focus:outline-none transition-colors duration-300"
+              >
+                <span>Market</span>
+                <svg
+                  class="w-4 h-4 ml-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20"
+              >
+                <a
+                  href="fresh-produce.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Fresh Produce</a
+                >
+                <a
+                  href="staples.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Staples</a
+                >
+                <a
+                  href="wholesale.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Wholesale</a
+                >
+              </div>
+            </div>
+
+            <div class="relative dropdown">
+              <button
+                class="flex items-center text-gray-600 hover:text-green-700 focus:outline-none transition-colors duration-300"
+              >
+                <span>Company</span>
+                <svg
+                  class="w-4 h-4 ml-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20"
+              >
+                <a
+                  href="about.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >About Us</a
+                >
+                <a
+                  href="blog.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Blog</a
+                >
+                <a
+                  href="careers.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Careers</a
+                >
+                <a
+                  href="contact.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Contact Us</a
+                >
+              </div>
+            </div>
+
+            <div class="relative dropdown">
+              <button
+                class="flex items-center text-gray-600 hover:text-green-700 focus:outline-none transition-colors duration-300"
+              >
+                <span>Support</span>
+                <svg
+                  class="w-4 h-4 ml-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20"
+              >
+                <a
+                  href="help-center.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Help Center</a
+                >
+                <a
+                  href="faq.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >FAQs</a
+                >
+                <a
+                  href="delivery-policy.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Delivery Policy</a
+                >
+                <a
+                  href="return-policy.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Return Policy</a
+                >
+              </div>
+            </div>
+          </nav>
+
+          <div class="flex items-center space-x-4">
+            <a
+              href="wish-list.html"
+              class="text-gray-600 hover:text-green-700 relative pl-3"
+              aria-label="View Wishlist"
+            >
+              <i class="fas fa-heart text-xl"></i>
+              <span
+                id="wishlist-counter"
+                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+                >0</span
+              >
+            </a>
+            <a
+              href="cart.html"
+              class="text-gray-600 hover:text-green-700 relative"
+              aria-label="View Cart"
+            >
+              <i class="fas fa-shopping-cart text-xl"></i>
+              <span
+                id="cart-counter"
+                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+                >0</span
+              >
+            </a>
+            <div class="hidden lg:flex items-center space-x-2">
+              <a
+                href="log-in.html"
+                class="text-gray-600 hover:text-green-700 px-4 py-2 rounded-md transition-colors duration-300"
+                >Log In</a
+              >
+              <a
+                href="sign-up.html"
+                class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition-colors duration-300"
+                >Sign Up</a
+              >
+            </div>
+            <div class="lg:hidden">
+              <button
+                id="mobile-menu-button"
+                class="text-gray-600 hover:text-green-700 focus:outline-none"
+                aria-label="Open menu"
+              >
+                <i class="fas fa-bars text-xl"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="mobile-menu"
+        class="hidden lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-200"
+      >
+        <div class="p-4 space-y-2">
+          <a
+            href="index.html"
+            class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-green-50 hover:text-green-700"
+            >Home</a
+          >
+
+          <div>
+            <button
+              class="w-full flex items-center justify-between px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 mobile-menu-dropdown-toggle"
+            >
+              <span>Market</span>
+              <svg
+                class="w-5 h-5 transform transition-transform"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <div class="mobile-submenu pl-4 mt-2 space-y-2">
+              <a
+                href="fresh-produce.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Fresh Produce</a
+              >
+              <a
+                href="staples.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Staples</a
+              >
+              <a
+                href="wholesale.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Wholesale</a
+              >
+            </div>
+          </div>
+
+          <div>
+            <button
+              class="w-full flex items-center justify-between px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 mobile-menu-dropdown-toggle"
+            >
+              <span>Company</span>
+              <svg
+                class="w-5 h-5 transform transition-transform"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <div class="mobile-submenu pl-4 mt-2 space-y-2">
+              <a
+                href="about.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >About Us</a
+              >
+              <a
+                href="blog.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Blog</a
+              >
+              <a
+                href="careers.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Careers</a
+              >
+              <a
+                href="contact.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Contact Us</a
+              >
+            </div>
+          </div>
+
+          <div>
+            <button
+              class="w-full flex items-center justify-between px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 mobile-menu-dropdown-toggle"
+            >
+              <span>Support</span>
+              <svg
+                class="w-5 h-5 transform transition-transform"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <div class="mobile-submenu pl-4 mt-2 space-y-2">
+              <a
+                href="help-center.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Help Center</a
+              >
+              <a
+                href="faq.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >FAQs</a
+              >
+              <a
+                href="delivery-policy.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Delivery Policy</a
+              >
+              <a
+                href="return-policy.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Return Policy</a
+              >
+            </div>
+          </div>
+
+          <div class="border-t border-gray-200 pt-4 mt-2 space-y-3">
+            <a
+              href="log-in.html"
+              class="block text-center w-full bg-gray-100 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-200 transition"
+              >Log In</a
+            >
+            <a
+              href="sign-up.html"
+              class="block text-center w-full bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition"
+              >Sign Up</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="faq-hero-bg text-white py-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 class="text-4xl md:text-5xl font-bold">
+            Frequently Asked Questions
+          </h1>
+          <p class="text-lg mt-4 text-green-100">
+            Find answers to common questions about Food4Nigeria.
+          </p>
+        </div>
+      </section>
+
+      <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+          <div class="space-y-4">
+            <div class="accordion-item">
+              <h2 class="text-lg" id="faq-heading-1">
+                <button
+                  type="button"
+                  class="accordion-button"
+                  aria-expanded="false"
+                  aria-controls="faq-content-1"
+                >
+                  How can I place an order?
+                  <svg
+                    class="w-5 h-5 text-gray-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </button>
+              </h2>
+              <div
+                id="faq-content-1"
+                role="region"
+                aria-labelledby="faq-heading-1"
+                class="accordion-content"
+              >
+                <p>
+                  You can place an order directly on our website by Browse our
+                  product categories, adding items to your cart, and proceeding
+                  to checkout. Our platform is designed for a seamless shopping
+                  experience.
+                </p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="text-lg" id="faq-heading-2">
+                <button
+                  type="button"
+                  class="accordion-button"
+                  aria-expanded="false"
+                  aria-controls="faq-content-2"
+                >
+                  What payment methods do you accept?
+                  <svg
+                    class="w-5 h-5 text-gray-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </button>
+              </h2>
+              <div
+                id="faq-content-2"
+                role="region"
+                aria-labelledby="faq-heading-2"
+                class="accordion-content"
+              >
+                <p>
+                  We accept various secure payment methods including major
+                  credit/debit cards (Visa, MasterCard) and local payment
+                  gateways. Cash on delivery is also available for select areas.
+                </p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="text-lg" id="faq-heading-3">
+                <button
+                  type="button"
+                  class="accordion-button"
+                  aria-expanded="false"
+                  aria-controls="faq-content-3"
+                >
+                  How long does delivery take?
+                  <svg
+                    class="w-5 h-5 text-gray-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </button>
+              </h2>
+              <div
+                id="faq-content-3"
+                role="region"
+                aria-labelledby="faq-heading-3"
+                class="accordion-content"
+              >
+                <p>
+                  Delivery times vary depending on your location and the
+                  specific items ordered. Typically, deliveries are completed
+                  within 24-48 hours within Lagos. You will receive an estimated
+                  delivery window during checkout.
+                </p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="text-lg" id="faq-heading-4">
+                <button
+                  type="button"
+                  class="accordion-button"
+                  aria-expanded="false"
+                  aria-controls="faq-content-4"
+                >
+                  Can I track my order?
+                  <svg
+                    class="w-5 h-5 text-gray-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </button>
+              </h2>
+              <div
+                id="faq-content-4"
+                role="region"
+                aria-labelledby="faq-heading-4"
+                class="accordion-content"
+              >
+                <p>
+                  Yes, once your order is dispatched, you will receive a
+                  tracking link via email or SMS, allowing you to monitor the
+                  status of your delivery in real-time.
+                </p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="text-lg" id="faq-heading-5">
+                <button
+                  type="button"
+                  class="accordion-button"
+                  aria-expanded="false"
+                  aria-controls="faq-content-5"
+                >
+                  What is your return policy?
+                  <svg
+                    class="w-5 h-5 text-gray-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </button>
+              </h2>
+              <div
+                id="faq-content-5"
+                role="region"
+                aria-labelledby="faq-heading-5"
+                class="accordion-content"
+              >
+                <p>
+                  We strive for your satisfaction. If you are not happy with
+                  your order, please refer to our detailed
+                  <a
+                    href="return-policy.html"
+                    class="text-green-600 hover:underline"
+                    >Return Policy</a
+                  >
+                  page for information on how to process returns and refunds.
+                </p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="text-lg" id="faq-heading-6">
+                <button
+                  type="button"
+                  class="accordion-button"
+                  aria-expanded="false"
+                  aria-controls="faq-content-6"
+                >
+                  Do you offer wholesale purchasing?
+                  <svg
+                    class="w-5 h-5 text-gray-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </button>
+              </h2>
+              <div
+                id="faq-content-6"
+                role="region"
+                aria-labelledby="faq-heading-6"
+                class="accordion-content"
+              >
+                <p>
+                  Yes, we do! For bulk and wholesale purchases, please visit our
+                  <a
+                    href="wholesale.html"
+                    class="text-green-600 hover:underline"
+                    >Wholesale page</a
+                  >
+                  or contact our sales team directly for special pricing and
+                  arrangements.
+                </p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="text-lg" id="faq-heading-7">
+                <button
+                  type="button"
+                  class="accordion-button"
+                  aria-expanded="false"
+                  aria-controls="faq-content-7"
+                >
+                  How do you ensure freshness of produce?
+                  <svg
+                    class="w-5 h-5 text-gray-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </button>
+              </h2>
+              <div
+                id="faq-content-7"
+                role="region"
+                aria-labelledby="faq-heading-7"
+                class="accordion-content"
+              >
+                <p>
+                  We work directly with local farmers and suppliers to source
+                  the freshest produce. Our logistics are optimized for quick
+                  transit, and items are carefully packaged to maintain their
+                  quality until they reach your kitchen.
+                </p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="text-lg" id="faq-heading-8">
+                <button
+                  type="button"
+                  class="accordion-button"
+                  aria-expanded="false"
+                  aria-controls="faq-content-8"
+                >
+                  Do you have a physical store?
+                  <svg
+                    class="w-5 h-5 text-gray-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </button>
+              </h2>
+              <div
+                id="faq-content-8"
+                role="region"
+                aria-labelledby="faq-heading-8"
+                class="accordion-content"
+              >
+                <p>
+                  Currently, Food4Nigeria operates exclusively as an online
+                  marketplace to ensure the most efficient delivery of fresh
+                  produce directly from farms to your home. We do not have a
+                  physical retail store.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="text-center mt-16 p-8 bg-green-50 rounded-lg shadow-inner"
+          >
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">
+              Can't find your answer?
+            </h2>
+            <p class="text-gray-700 text-lg mb-6">
+              Our dedicated support team is ready to assist you.
+            </p>
+            <a
+              href="contact.html"
+              class="inline-block bg-green-600 text-white px-8 py-4 rounded-full text-xl font-semibold hover:bg-green-700 transition duration-300"
+            >
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="mb-4 lg:mb-0">
+            <h3 class="text-lg font-bold mb-2">
+              Food<span class="text-green-400"><sub>4</sub></span
+              >Nigeria
+            </h3>
+            <p class="text-gray-400 text-sm">
+              Your one-stop shop for fresh and affordable Nigerian foodstuffs,
+              delivered with care.
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold text-base mb-3">Company</h4>
+            <ul class="space-y-1.5 text-sm">
+              <li>
+                <a
+                  href="about.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="blog.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Blog</a
+                >
+              </li>
+              <li>
+                <a
+                  href="careers.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Careers</a
+                >
+              </li>
+              <li>
+                <a
+                  href="contact.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-base mb-3">Support</h4>
+            <ul class="space-y-1.5 text-sm">
+              <li>
+                <a
+                  href="help-center.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Help Center</a
+                >
+              </li>
+              <li>
+                <a
+                  href="faq.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >FAQs</a
+                >
+              </li>
+              <li>
+                <a
+                  href="delivery-policy.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Delivery Policy</a
+                >
+              </li>
+              <li>
+                <a
+                  href="return-policy.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Return Policy</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-base mb-3">Legal</h4>
+            <ul class="space-y-1.5 text-sm">
+              <li>
+                <a
+                  href="privacy-policy.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a
+                  href="terms-of-service.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Terms of Service</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-700 mt-6 pt-4 flex flex-col sm:flex-row justify-between items-center"
+        >
+          <p class="text-gray-500 text-xs mb-4 sm:mb-0">
+            © 2025 Food4Nigeria. All Rights Reserved.
+          </p>
+          <div class="flex items-center space-x-4">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg"
+              alt="Visa"
+              class="h-5 bg-white rounded px-1"
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg"
+              alt="Mastercard"
+              class="h-5"
+            />
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div
+      id="toast-notification"
+      class="fixed bottom-5 right-5 bg-gray-900 text-white py-3 px-6 rounded-lg shadow-lg opacity-0 transform translate-y-3 pointer-events-none"
+    >
+      <p id="toast-message"></p>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const Food4NigeriaApp = {
+          state: { wishlist: [], cartCount: 0 },
+          elements: {
+            wishlistCounter: document.getElementById('wishlist-counter'),
+            cartCounter: document.getElementById('cart-counter'),
+            toast: document.getElementById('toast-notification'),
+            toastMessage: document.getElementById('toast-message'),
+            mobileMenuButton: document.getElementById('mobile-menu-button'),
+            mobileMenu: document.getElementById('mobile-menu'),
+            mobileDropdownToggles: document.querySelectorAll(
+              '.mobile-menu-dropdown-toggle'
+            ),
+            faqButtons: document.querySelectorAll('.accordion-button'), // Added for FAQ
+          },
+          init() {
+            this.loadState();
+            this.updateUI();
+            this.bindEventListeners();
+            this.initFaqAccordion(); // Call the FAQ accordion initializer
+          },
+          loadState() {
+            const storedState = JSON.parse(
+              localStorage.getItem('food4NigeriaState')
+            );
+            if (storedState) this.state = { ...this.state, ...storedState };
+          },
+          saveState() {
+            localStorage.setItem(
+              'food4NigeriaState',
+              JSON.stringify(this.state)
+            );
+          },
+          updateUI() {
+            this.elements.cartCounter.textContent = this.state.cartCount;
+            this.elements.wishlistCounter.textContent =
+              this.state.wishlist.length;
+          },
+          showToast(message, duration = 3000) {
+            this.elements.toastMessage.textContent = message;
+            this.elements.toast.classList.remove('opacity-0', 'translate-y-3');
+            setTimeout(() => {
+              this.elements.toast.classList.add('opacity-0', 'translate-y-3');
+            }, duration);
+          },
+          bindEventListeners() {
+            if (this.elements.mobileMenuButton) {
+              this.elements.mobileMenuButton.addEventListener('click', () => {
+                this.elements.mobileMenu.classList.toggle('hidden');
+              });
+            }
+            this.elements.mobileDropdownToggles.forEach((toggle) => {
+              toggle.addEventListener('click', () => {
+                const submenu = toggle.nextElementSibling;
+                const icon = toggle.querySelector('svg');
+
+                // Close other open submenus
+                this.elements.mobileDropdownToggles.forEach((otherToggle) => {
+                  if (otherToggle !== toggle) {
+                    const otherSubmenu = otherToggle.nextElementSibling;
+                    const otherIcon = otherToggle.querySelector('svg');
+                    otherSubmenu.style.maxHeight = null;
+                    otherIcon.style.transform = 'rotate(0deg)';
+                  }
+                });
+
+                if (submenu.style.maxHeight) {
+                  submenu.style.maxHeight = null;
+                  icon.style.transform = 'rotate(0deg)';
+                } else {
+                  submenu.style.maxHeight = submenu.scrollHeight + 'px';
+                  icon.style.transform = 'rotate(180deg)';
+                }
+              });
+            });
+          },
+          initFaqAccordion() {
+            this.elements.faqButtons.forEach((button) => {
+              button.addEventListener('click', () => {
+                const expanded =
+                  button.getAttribute('aria-expanded') === 'true' || false;
+
+                // Close any currently open accordion
+                this.elements.faqButtons.forEach((otherButton) => {
+                  if (
+                    otherButton !== button &&
+                    otherButton.getAttribute('aria-expanded') === 'true'
+                  ) {
+                    otherButton.setAttribute('aria-expanded', 'false');
+                    const otherAnswer = document.getElementById(
+                      otherButton.getAttribute('aria-controls')
+                    );
+                    otherAnswer.style.maxHeight = null; // Use style.maxHeight for smooth transition
+                    otherAnswer.setAttribute('aria-hidden', 'true');
+                  }
+                });
+
+                // Toggle the clicked accordion
+                button.setAttribute('aria-expanded', !expanded);
+                const answer = document.getElementById(
+                  button.getAttribute('aria-controls')
+                );
+                if (!expanded) {
+                  answer.style.maxHeight = answer.scrollHeight + 'px'; // Set maxHeight for open
+                  answer.setAttribute('aria-hidden', 'false');
+                } else {
+                  answer.style.maxHeight = null; // Reset maxHeight for close
+                  answer.setAttribute('aria-hidden', 'true');
+                }
+              });
+            });
+          },
+        };
+        Food4NigeriaApp.init();
+      });
+    </script>
+  </body>
+</html>

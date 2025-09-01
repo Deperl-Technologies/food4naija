@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food4Nigeria - Your Cart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+      .dropdown-menu {
+        display: none;
+        animation: fadeIn 0.3s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      #mobile-menu {
+        transition: transform 0.3s ease-in-out;
+      }
+      #mobile-menu.hidden {
+        transform: translateX(-100%);
+      }
+      .mobile-submenu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-in-out;
+      }
+      #toast-notification {
+        transition: opacity 0.3s, transform 0.3s;
+      }
+
+      /* Specific styles for cart page */
+      .cart-container {
+        min-height: calc(
+          100vh - 20rem
+        ); /* Adjust based on header/footer height */
+      }
+      .cart-item-card {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        border-bottom: 1px solid #e5e7eb; /* gray-200 */
+      }
+      .cart-item-card:last-child {
+        border-bottom: none;
+      }
+      .quantity-control button {
+        background-color: #f3f4f6; /* gray-100 */
+        color: #1f2937; /* gray-900 */
+        border: 1px solid #d1d5db; /* gray-300 */
+        padding: 0.25rem 0.75rem;
+        border-radius: 0.375rem; /* rounded-md */
+        transition: background-color 0.2s ease;
+      }
+      .quantity-control button:hover {
+        background-color: #e5e7eb; /* gray-200 */
+      }
+      .quantity-control input {
+        width: 3rem;
+        text-align: center;
+        border: 1px solid #d1d5db; /* gray-300 */
+        border-radius: 0.375rem; /* rounded-md */
+        margin: 0 0.5rem;
+        -moz-appearance: textfield; /* Hide arrows in Firefox */
+      }
+      .quantity-control input::-webkit-outer-spin-button,
+      .quantity-control input::-webkit-inner-spin-button {
+        -webkit-appearance: none; /* Hide arrows in Chrome, Safari, Edge */
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <header class="bg-white shadow-md sticky top-0 z-50">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <div class="flex-shrink-0">
+            <a href="index.html" class="text-2xl font-bold text-green-700"
+              >Food<span style="color: grey"><sub>4</sub></span
+              >Nigeria</a
+            >
+          </div>
+
+          <nav class="hidden lg:flex items-center space-x-8">
+            <a
+              href="index.html"
+              class="text-gray-600 hover:text-green-700 transition-colors duration-300"
+              >Home</a
+            >
+
+            <div class="relative dropdown">
+              <button
+                class="flex items-center text-gray-600 hover:text-green-700 focus:outline-none transition-colors duration-300"
+              >
+                <span>Market</span>
+                <svg
+                  class="w-4 h-4 ml-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20"
+              >
+                <a
+                  href="fresh-produce.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Fresh Produce</a
+                >
+                <a
+                  href="staples.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Staples</a
+                >
+                <a
+                  href="wholesale.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Wholesale</a
+                >
+              </div>
+            </div>
+
+            <div class="relative dropdown">
+              <button
+                class="flex items-center text-gray-600 hover:text-green-700 focus:outline-none transition-colors duration-300"
+              >
+                <span>Company</span>
+                <svg
+                  class="w-4 h-4 ml-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20"
+              >
+                <a
+                  href="about.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >About Us</a
+                >
+                <a
+                  href="blog.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Blog</a
+                >
+                <a
+                  href="careers.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Careers</a
+                >
+                <a
+                  href="contact.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Contact Us</a
+                >
+              </div>
+            </div>
+
+            <div class="relative dropdown">
+              <button
+                class="flex items-center text-gray-600 hover:text-green-700 focus:outline-none transition-colors duration-300"
+              >
+                <span>Support</span>
+                <svg
+                  class="w-4 h-4 ml-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20"
+              >
+                <a
+                  href="help-center.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Help Center</a
+                >
+                <a
+                  href="faq.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >FAQs</a
+                >
+                <a
+                  href="delivery-policy.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Delivery Policy</a
+                >
+                <a
+                  href="return-policy.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Return Policy</a
+                >
+              </div>
+            </div>
+          </nav>
+
+          <div class="flex items-center space-x-4">
+            <a
+              href="wish-list.html"
+              class="text-gray-600 hover:text-green-700 relative pl-3"
+              aria-label="View Wishlist"
+            >
+              <i class="fas fa-heart text-xl"></i>
+              <span
+                id="wishlist-counter"
+                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+                >0</span
+              >
+            </a>
+            <a
+              href="cart.html"
+              class="text-gray-600 hover:text-green-700 relative"
+              aria-label="View Cart"
+            >
+              <i class="fas fa-shopping-cart text-xl"></i>
+              <span
+                id="cart-counter"
+                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+                >0</span
+              >
+            </a>
+            <div id="auth-links" class="hidden lg:flex items-center space-x-2">
+              <a
+                href="log-in.html"
+                class="text-gray-600 hover:text-green-700 px-4 py-2 rounded-md transition-colors duration-300"
+                >Log In</a
+              >
+              <a
+                href="sign-up.html"
+                class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition-colors duration-300"
+                >Sign Up</a
+              >
+            </div>
+            <div
+              id="account-info"
+              class="hidden lg:flex items-center relative dropdown"
+            >
+              <button
+                id="account-link"
+                class="flex items-center text-gray-600 hover:text-green-700 font-medium focus:outline-none"
+              >
+                <i class="fas fa-user-circle text-xl mr-2"></i>
+                <span id="header-user-name">My Account</span>
+                <svg
+                  class="w-4 h-4 ml-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20"
+              >
+                <a
+                  href="wish-list.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Dashboard</a
+                >
+                <a
+                  href="#"
+                  id="logout-button-desktop"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Logout</a
+                >
+              </div>
+            </div>
+            <div class="lg:hidden">
+              <button
+                id="mobile-menu-button"
+                class="text-gray-600 hover:text-green-700 focus:outline-none"
+                aria-label="Open menu"
+              >
+                <i class="fas fa-bars text-xl"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="mobile-menu"
+        class="hidden lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-200"
+      >
+        <div class="p-4 space-y-2">
+          <a
+            href="index.html"
+            class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-green-50 hover:text-green-700"
+            >Home</a
+          >
+
+          <div>
+            <button
+              class="w-full flex items-center justify-between px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 mobile-menu-dropdown-toggle"
+            >
+              <span>Market</span>
+              <svg
+                class="w-5 h-5 transform transition-transform"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <div class="mobile-submenu pl-4 mt-2 space-y-2">
+              <a
+                href="fresh-produce.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Fresh Produce</a
+              >
+              <a
+                href="staples.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Staples</a
+              >
+              <a
+                href="wholesale.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Wholesale</a
+              >
+            </div>
+          </div>
+
+          <div>
+            <button
+              class="w-full flex items-center justify-between px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 mobile-menu-dropdown-toggle"
+            >
+              <span>Company</span>
+              <svg
+                class="w-5 h-5 transform transition-transform"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <div class="mobile-submenu pl-4 mt-2 space-y-2">
+              <a
+                href="about.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >About Us</a
+              >
+              <a
+                href="blog.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Blog</a
+              >
+              <a
+                href="careers.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Careers</a
+              >
+              <a
+                href="contact.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Contact Us</a
+              >
+            </div>
+          </div>
+
+          <div>
+            <button
+              class="w-full flex items-center justify-between px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 mobile-menu-dropdown-toggle"
+            >
+              <span>Support</span>
+              <svg
+                class="w-5 h-5 transform transition-transform"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <div class="mobile-submenu pl-4 mt-2 space-y-2">
+              <a
+                href="help-center.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Help Center</a
+              >
+              <a
+                href="faq.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >FAQs</a
+              >
+              <a
+                href="delivery-policy.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Delivery Policy</a
+              >
+              <a
+                href="return-policy.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Return Policy</a
+              >
+            </div>
+          </div>
+
+          <div class="border-t border-gray-200 pt-4 mt-2 space-y-3">
+            <a
+              href="log-in.html"
+              id="mobile-login-link"
+              class="block text-center w-full bg-gray-100 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-200 transition"
+              >Log In</a
+            >
+            <a
+              href="sign-up.html"
+              id="mobile-signup-link"
+              class="block text-center w-full bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition"
+              >Sign Up</a
+            >
+            <a
+              href="wish-list.html"
+              id="mobile-account-link"
+              class="block text-center w-full bg-gray-100 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-200 transition hidden"
+              >My Account</a
+            >
+            <a
+              href="#"
+              id="logout-button-mobile"
+              class="block text-center w-full bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 transition hidden"
+              >Logout</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="py-10 bg-gray-100 cart-container">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center">
+          Your Shopping Cart
+        </h1>
+
+        <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-8">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Cart Items List -->
+            <div class="lg:col-span-2">
+              <h2 class="text-2xl font-bold text-gray-800 mb-6">
+                Items in Cart
+              </h2>
+              <div id="cart-items-list" class="divide-y divide-gray-200">
+                <!-- Cart items will be rendered here by JavaScript -->
+                <div
+                  id="empty-cart-message"
+                  class="bg-blue-50 border-l-4 border-blue-400 text-blue-700 p-4 rounded-lg hidden"
+                  role="alert"
+                >
+                  <p class="font-bold mb-2">Your cart is empty!</p>
+                  <p class="text-sm">
+                    Looks like you haven't added anything to your cart yet.
+                    Start shopping to fill it up!
+                  </p>
+                  <a
+                    href="index.html"
+                    class="mt-3 inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition text-sm"
+                    >Start Shopping</a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Order Summary Section -->
+            <div>
+              <h2 class="text-2xl font-bold text-gray-800 mb-6">
+                Order Summary
+              </h2>
+              <div class="border border-gray-200 rounded-lg p-4 mb-6">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-gray-600">Subtotal</span>
+                  <span class="font-semibold text-gray-800"
+                    >₦<span id="cart-subtotal">0.00</span></span
+                  >
+                </div>
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-gray-600">Shipping</span>
+                  <span class="font-semibold text-gray-800"
+                    >₦<span id="cart-shipping">0.00</span></span
+                  >
+                </div>
+                <div
+                  class="flex justify-between items-center border-t border-gray-200 pt-2 mt-2"
+                >
+                  <span class="text-lg font-bold text-gray-800">Total</span>
+                  <span class="text-lg font-bold text-green-700"
+                    >₦<span id="cart-total">0.00</span></span
+                  >
+                </div>
+              </div>
+
+              <a
+                href="payment.html"
+                id="proceed-to-checkout-btn"
+                class="w-full bg-green-600 text-white font-bold py-3 px-6 rounded-full hover:bg-green-700 transition duration-300 text-center block"
+              >
+                Proceed to Checkout
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="mb-4 lg:mb-0">
+            <h3 class="text-lg font-bold mb-2">
+              Food<span class="text-green-400"><sub>4</sub></span
+              >Nigeria
+            </h3>
+            <p class="text-gray-400 text-sm">
+              Your one-stop shop for fresh and affordable Nigerian foodstuffs,
+              delivered with care.
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold text-base mb-3">Company</h4>
+            <ul class="space-y-1.5 text-sm">
+              <li>
+                <a
+                  href="about.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="blog.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Blog</a
+                >
+              </li>
+              <li>
+                <a
+                  href="careers.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Careers</a
+                >
+              </li>
+              <li>
+                <a
+                  href="contact.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-base mb-3">Support</h4>
+            <ul class="space-y-1.5 text-sm">
+              <li>
+                <a
+                  href="help-center.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Help Center</a
+                >
+              </li>
+              <li>
+                <a
+                  href="faq.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >FAQs</a
+                >
+              </li>
+              <li>
+                <a
+                  href="delivery-policy.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Delivery Policy</a
+                >
+              </li>
+              <li>
+                <a
+                  href="return-policy.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Return Policy</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-base mb-3">Legal</h4>
+            <ul class="space-y-1.5 text-sm">
+              <li>
+                <a
+                  href="privacy-policy.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a
+                  href="terms-of-service.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Terms of Service</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-700 mt-6 pt-4 flex flex-col sm:flex-row justify-between items-center"
+        >
+          <p class="text-gray-500 text-xs mb-4 sm:mb-0">
+            © 2025 Food4Nigeria. All Rights Reserved.
+          </p>
+          <div class="flex items-center space-x-4">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg"
+              alt="Visa"
+              class="h-5 bg-white rounded px-1"
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg"
+              alt="Mastercard"
+              class="h-5"
+            />
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div
+      id="toast-notification"
+      class="fixed bottom-5 right-5 bg-gray-900 text-white py-3 px-6 rounded-lg shadow-lg opacity-0 transform translate-y-3 pointer-events-none"
+    >
+      <p id="toast-message"></p>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const Food4NigeriaApp = {
+          state: {
+            wishlist: [],
+            cartCount: 0,
+            loggedInUser: null,
+            cartItems: [
+              // Mock cart items
+              {
+                id: '1',
+                name: 'Fresh Tomatoes (Basket)',
+                price: 8500,
+                quantity: 1,
+                imageUrl:
+                  'https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?q=80&w=1964&auto=format&fit=crop',
+              },
+              {
+                id: '2',
+                name: 'Long Grain Rice (50kg)',
+                price: 75000,
+                quantity: 1,
+                imageUrl:
+                  'https://images.unsplash.com/photo-1590005024622-38933b207259?q=80&w=1974&auto=format&fit=crop',
+              },
+              {
+                id: '3',
+                name: 'Red Palm Oil (5 Litres)',
+                price: 12000,
+                quantity: 2,
+                imageUrl:
+                  'https://images.unsplash.com/photo-1615485925576-8798af3d5444?q=80&w=1964&auto=format&fit=crop',
+              },
+            ],
+          },
+          elements: {
+            wishlistCounter: document.getElementById('wishlist-counter'),
+            cartCounter: document.getElementById('cart-counter'),
+            toast: document.getElementById('toast-notification'),
+            toastMessage: document.getElementById('toast-message'),
+            newsletterForm: document.getElementById('newsletter-form'),
+            authLinks: document.getElementById('auth-links'),
+            accountInfo: document.getElementById('account-info'),
+            accountLink: document.getElementById('account-link'),
+            headerUserName: document.getElementById('header-user-name'),
+            mobileLoginLink: document.getElementById('mobile-login-link'),
+            mobileSignupLink: document.getElementById('mobile-signup-link'),
+            mobileAccountLink: document.getElementById('mobile-account-link'),
+            logoutButtonDesktop: document.getElementById(
+              'logout-button-desktop'
+            ),
+            logoutButtonMobile: document.getElementById('logout-button-mobile'),
+            mobileMenuButton: document.getElementById('mobile-menu-button'),
+            mobileMenu: document.getElementById('mobile-menu'),
+            mobileDropdownToggles: document.querySelectorAll(
+              '.mobile-menu-dropdown-toggle'
+            ),
+
+            // Cart page specific elements
+            cartItemsList: document.getElementById('cart-items-list'),
+            emptyCartMessage: document.getElementById('empty-cart-message'),
+            cartSubtotal: document.getElementById('cart-subtotal'),
+            cartShipping: document.getElementById('cart-shipping'),
+            cartTotal: document.getElementById('cart-total'),
+            proceedToCheckoutBtn: document.getElementById(
+              'proceed-to-checkout-btn'
+            ),
+          },
+
+          init() {
+            this.loadState();
+            this.updateUI();
+            this.bindEventListeners();
+            this.renderCartItems();
+            this.calculateCartSummary();
+          },
+
+          loadState() {
+            try {
+              const storedState = JSON.parse(
+                localStorage.getItem('food4NigeriaState')
+              );
+              if (storedState) {
+                this.state = { ...this.state, ...storedState };
+                // Ensure cartItems is an array, default to empty if not present or invalid
+                if (!Array.isArray(this.state.cartItems)) {
+                  this.state.cartItems = [];
+                }
+              }
+            } catch (e) {
+              console.error('Error loading state from localStorage:', e);
+              localStorage.removeItem('food4NigeriaState'); // Clear corrupted state
+            }
+          },
+          saveState() {
+            localStorage.setItem(
+              'food4NigeriaState',
+              JSON.stringify(this.state)
+            );
+          },
+
+          updateUI() {
+            // Update cart count in header based on actual items in cart
+            this.elements.cartCounter.textContent = this.state.cartItems.reduce(
+              (sum, item) => sum + item.quantity,
+              0
+            );
+            this.elements.wishlistCounter.textContent =
+              this.state.wishlist.length;
+
+            // Header Auth/Account Links
+            if (this.state.loggedInUser) {
+              this.elements.authLinks.classList.add('hidden');
+              this.elements.accountInfo.classList.remove('hidden');
+              if (this.elements.headerUserName) {
+                this.elements.headerUserName.textContent =
+                  this.state.loggedInUser.name || 'My Account';
+              }
+              // Mobile menu
+              this.elements.mobileLoginLink.classList.add('hidden');
+              this.elements.mobileSignupLink.classList.add('hidden');
+              this.elements.mobileAccountLink.classList.remove('hidden');
+              this.elements.logoutButtonMobile.classList.remove('hidden');
+            } else {
+              this.elements.authLinks.classList.remove('hidden');
+              this.elements.accountInfo.classList.add('hidden');
+              // Mobile menu
+              this.elements.mobileLoginLink.classList.remove('hidden');
+              this.elements.mobileSignupLink.classList.remove('hidden');
+              this.elements.mobileAccountLink.classList.add('hidden');
+              this.elements.logoutButtonMobile.classList.add('hidden');
+            }
+          },
+
+          logout() {
+            this.state.loggedInUser = null;
+            this.saveState();
+            this.showToast('You have been logged out.', 3000);
+            setTimeout(() => {
+              window.location.href = 'Homepage.html'; // Redirect to homepage after logout
+            }, 1000);
+          },
+
+          showToast(message, duration = 3000) {
+            this.elements.toastMessage.textContent = message;
+            this.elements.toast.classList.remove(
+              'opacity-0',
+              'translate-y-3',
+              'pointer-events-none'
+            );
+            this.elements.toast.classList.add(
+              'opacity-100',
+              'translate-y-0',
+              'pointer-events-auto'
+            );
+
+            setTimeout(() => {
+              this.elements.toast.classList.remove(
+                'opacity-100',
+                'translate-y-0',
+                'pointer-events-auto'
+              );
+              this.elements.toast.classList.add(
+                'opacity-0',
+                'translate-y-3',
+                'pointer-events-none'
+              );
+            }, duration);
+          },
+
+          bindEventListeners() {
+            if (this.elements.mobileMenuButton) {
+              this.elements.mobileMenuButton.addEventListener('click', () => {
+                this.elements.mobileMenu.classList.toggle('hidden');
+              });
+            }
+            this.elements.mobileDropdownToggles.forEach((toggle) => {
+              toggle.addEventListener('click', () => {
+                const submenu = toggle.nextElementSibling;
+                const icon = toggle.querySelector('svg');
+
+                // Close other open submenus
+                this.elements.mobileDropdownToggles.forEach((otherToggle) => {
+                  if (otherToggle !== toggle) {
+                    const otherSubmenu = otherToggle.nextElementSibling;
+                    const otherIcon = otherToggle.querySelector('svg');
+                    otherSubmenu.style.maxHeight = null;
+                    otherIcon.style.transform = 'rotate(0deg)';
+                  }
+                });
+
+                if (submenu.style.maxHeight) {
+                  submenu.style.maxHeight = null;
+                  icon.style.transform = 'rotate(0deg)';
+                } else {
+                  submenu.style.maxHeight = submenu.scrollHeight + 'px';
+                  icon.style.transform = 'rotate(180deg)';
+                }
+              });
+            });
+
+            // Logout buttons
+            if (this.elements.logoutButtonDesktop) {
+              this.elements.logoutButtonDesktop.addEventListener(
+                'click',
+                (e) => {
+                  e.preventDefault();
+                  this.logout();
+                }
+              );
+            }
+            if (this.elements.logoutButtonMobile) {
+              this.elements.logoutButtonMobile.addEventListener(
+                'click',
+                (e) => {
+                  e.preventDefault();
+                  this.logout();
+                }
+              );
+            }
+
+            // Event delegation for cart item quantity and remove buttons
+            if (this.elements.cartItemsList) {
+              this.elements.cartItemsList.addEventListener('click', (e) => {
+                const target = e.target;
+                const productId =
+                  target.closest('.cart-item-card')?.dataset.productId;
+
+                if (!productId) return;
+
+                if (target.classList.contains('increase-quantity')) {
+                  this.updateCartItemQuantity(productId, 1);
+                } else if (target.classList.contains('decrease-quantity')) {
+                  this.updateCartItemQuantity(productId, -1);
+                } else if (target.classList.contains('remove-item')) {
+                  this.removeCartItem(productId);
+                }
+              });
+            }
+          },
+
+          renderCartItems() {
+            this.elements.cartItemsList.innerHTML = ''; // Clear existing items
+
+            if (this.state.cartItems.length === 0) {
+              this.elements.emptyCartMessage.classList.remove('hidden');
+              this.elements.proceedToCheckoutBtn.classList.add('hidden'); // Hide checkout button if cart is empty
+            } else {
+              this.elements.emptyCartMessage.classList.add('hidden');
+              this.elements.proceedToCheckoutBtn.classList.remove('hidden'); // Show checkout button
+
+              this.state.cartItems.forEach((item) => {
+                const itemHtml = `
+                                <div class="cart-item-card bg-white rounded-lg shadow-sm mb-4" data-product-id="${
+                                  item.id
+                                }">
+                                    <img src="${item.imageUrl}" alt="${
+                  item.name
+                }" class="w-24 h-24 object-cover rounded-md mr-4">
+                                    <div class="flex-grow">
+                                        <h3 class="font-semibold text-lg text-gray-800">${
+                                          item.name
+                                        }</h3>
+                                        <p class="text-green-600 font-bold mt-1">₦${item.price.toLocaleString()}</p>
+                                        <div class="flex items-center mt-3 quantity-control">
+                                            <button class="decrease-quantity">-</button>
+                                            <input type="number" value="${
+                                              item.quantity
+                                            }" min="1" class="quantity-input">
+                                            <button class="increase-quantity">+</button>
+                                            <button class="remove-item text-red-600 hover:text-red-800 ml-4">
+                                                <i class="fas fa-trash-alt"></i> Remove
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="text-right ml-4">
+                                        <p class="text-lg font-bold text-gray-900">₦${(
+                                          item.price * item.quantity
+                                        ).toLocaleString()}</p>
+                                    </div>
+                                </div>
+                            `;
+                this.elements.cartItemsList.insertAdjacentHTML(
+                  'beforeend',
+                  itemHtml
+                );
+              });
+            }
+            this.calculateCartSummary(); // Recalculate summary after rendering
+          },
+
+          updateCartItemQuantity(productId, change) {
+            const itemIndex = this.state.cartItems.findIndex(
+              (item) => item.id === productId
+            );
+            if (itemIndex > -1) {
+              const currentQuantity = this.state.cartItems[itemIndex].quantity;
+              const newQuantity = currentQuantity + change;
+
+              if (newQuantity > 0) {
+                this.state.cartItems[itemIndex].quantity = newQuantity;
+                this.showToast(
+                  `Updated quantity for ${this.state.cartItems[itemIndex].name}`
+                );
+              } else {
+                // If quantity becomes 0 or less, remove the item
+                this.removeCartItem(productId);
+                return; // Exit to avoid re-rendering twice
+              }
+              this.saveState();
+              this.renderCartItems(); // Re-render to update quantities and subtotals
+              this.updateUI(); // Update header cart count
+            }
+          },
+
+          removeCartItem(productId) {
+            this.state.cartItems = this.state.cartItems.filter(
+              (item) => item.id !== productId
+            );
+            this.saveState();
+            this.renderCartItems(); // Re-render to remove the item
+            this.updateUI(); // Update header cart count
+            this.showToast('Item removed from cart.');
+          },
+
+          calculateCartSummary() {
+            let subtotal = 0;
+            this.state.cartItems.forEach((item) => {
+              subtotal += item.price * item.quantity;
+            });
+
+            const shipping = subtotal > 0 ? 1500 : 0; // Example: ₦1500 shipping if there are items
+            const total = subtotal + shipping;
+
+            this.elements.cartSubtotal.textContent = subtotal
+              .toFixed(2)
+              .toLocaleString();
+            this.elements.cartShipping.textContent = shipping
+              .toFixed(2)
+              .toLocaleString();
+            this.elements.cartTotal.textContent = total
+              .toFixed(2)
+              .toLocaleString();
+
+            // Update the order data in state for the payment page
+            this.state.order = {
+              subtotal: subtotal,
+              shipping: shipping,
+              total: total,
+              shippingInfo: this.state.loggedInUser
+                ? {
+                    name: this.state.loggedInUser.name,
+                    address: this.state.loggedInUser.address,
+                    phone: this.state.loggedInUser.phone,
+                  }
+                : {
+                    // Default if not logged in
+                    name: 'Guest User',
+                    address: 'Shipping address not provided',
+                    phone: 'N/A',
+                  },
+            };
+            this.saveState(); // Save the updated order state
+          },
+        };
+
+        Food4NigeriaApp.init();
+      });
+    </script>
+  </body>
+</html>

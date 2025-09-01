@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food4Nigeria - Fresh Food Delivered</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+      .dropdown-menu {
+        display: none;
+        animation: fadeIn 0.3s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      #mobile-menu {
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      }
+      #mobile-menu.hidden {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+      .mobile-submenu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-in-out;
+      }
+      .hero-bg {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+          ),
+          url('https://images.unsplash.com/photo-1605697267362-20731d4515c6?q=80&w=1932&auto=format&fit=crop');
+        background-size: cover;
+        background-position: center;
+      }
+      .swiper-button-next,
+      .swiper-button-prev {
+        color: #15803d;
+      }
+      .swiper-pagination-bullet-active {
+        background: #15803d;
+      }
+      #toast-notification {
+        transition: opacity 0.3s, transform 0.3s;
+      }
+      .fade-in-section {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+      .fade-in-section.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .category-card {
+        background-size: cover;
+        background-position: center;
+      }
+      .category-card:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.7),
+          rgba(0, 0, 0, 0.1)
+        );
+        transition: background 0.3s ease;
+      }
+      .category-card:hover:after {
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.8),
+          rgba(0, 0, 0, 0.2)
+        );
+      }
+      .category-card-content {
+        z-index: 10;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <header class="bg-white shadow-md sticky top-0 z-50">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <div class="flex-shrink-0">
+            <a href="index.html" class="text-2xl font-bold text-green-700"
+              >Food<span style="color: grey"><sub>4</sub></span
+              >Nigeria</a
+            >
+          </div>
+
+          <nav class="hidden lg:flex items-center space-x-8">
+            <a
+              href="index.html"
+              class="text-gray-600 hover:text-green-700 transition-colors duration-300"
+              >Home</a
+            >
+
+            <div class="relative dropdown">
+              <button
+                class="flex items-center text-gray-600 hover:text-green-700 focus:outline-none transition-colors duration-300"
+              >
+                <span>Market</span>
+                <svg
+                  class="w-4 h-4 ml-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20"
+              >
+                <a
+                  href="fresh-produce.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Fresh Produce</a
+                >
+                <a
+                  href="staples.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Staples</a
+                >
+                <a
+                  href="wholesale.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Wholesale</a
+                >
+              </div>
+            </div>
+
+            <div class="relative dropdown">
+              <button
+                class="flex items-center text-gray-600 hover:text-green-700 focus:outline-none transition-colors duration-300"
+              >
+                <span>Company</span>
+                <svg
+                  class="w-4 h-4 ml-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20"
+              >
+                <a
+                  href="about.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >About Us</a
+                >
+                <a
+                  href="blog.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Blog</a
+                >
+                <a
+                  href="careers.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Careers</a
+                >
+                <a
+                  href="contact.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Contact Us</a
+                >
+              </div>
+            </div>
+
+            <div class="relative dropdown">
+              <button
+                class="flex items-center text-gray-600 hover:text-green-700 focus:outline-none transition-colors duration-300"
+              >
+                <span>Support</span>
+                <svg
+                  class="w-4 h-4 ml-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20"
+              >
+                <a
+                  href="help-center.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Help Center</a
+                >
+                <a
+                  href="faq.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >FAQs</a
+                >
+                <a
+                  href="delivery-policy.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Delivery Policy</a
+                >
+                <a
+                  href="return-policy.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Return Policy</a
+                >
+              </div>
+            </div>
+          </nav>
+
+          <div class="flex items-center space-x-4">
+            <a
+              href="wish-list.html"
+              class="text-gray-600 hover:text-green-700 relative pl-3"
+              aria-label="View Wishlist"
+            >
+              <i class="fas fa-heart text-xl"></i>
+              <span
+                id="wishlist-counter"
+                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+                >0</span
+              >
+            </a>
+            <a
+              href="cart.html"
+              class="text-gray-600 hover:text-green-700 relative"
+              aria-label="View Cart"
+            >
+              <i class="fas fa-shopping-cart text-xl"></i>
+              <span
+                id="cart-counter"
+                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+                >0</span
+              >
+            </a>
+            <div class="hidden lg:flex items-center space-x-2">
+              <a
+                href="log-in.html"
+                class="text-gray-600 hover:text-green-700 px-4 py-2 rounded-md transition-colors duration-300"
+                >Log In</a
+              >
+              <a
+                href="sign-up.html"
+                class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition-colors duration-300"
+                >Sign Up</a
+              >
+            </div>
+            <div class="lg:hidden">
+              <button
+                id="mobile-menu-button"
+                class="text-gray-600 hover:text-green-700 focus:outline-none"
+                aria-label="Open menu"
+              >
+                <i class="fas fa-bars text-xl"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="mobile-menu"
+        class="hidden lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-200"
+      >
+        <div class="p-4 space-y-2">
+          <a
+            href="index.html"
+            class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-green-50 hover:text-green-700"
+            >Home</a
+          >
+
+          <div>
+            <button
+              class="w-full flex items-center justify-between px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 mobile-menu-dropdown-toggle"
+            >
+              <span>Market</span>
+              <svg
+                class="w-5 h-5 transform transition-transform"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <div class="mobile-submenu pl-4 mt-2 space-y-2">
+              <a
+                href="fresh-produce.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Fresh Produce</a
+              >
+              <a
+                href="staples.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Staples</a
+              >
+              <a
+                href="wholesale.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Wholesale</a
+              >
+            </div>
+          </div>
+
+          <div>
+            <button
+              class="w-full flex items-center justify-between px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 mobile-menu-dropdown-toggle"
+            >
+              <span>Company</span>
+              <svg
+                class="w-5 h-5 transform transition-transform"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <div class="mobile-submenu pl-4 mt-2 space-y-2">
+              <a
+                href="about.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >About Us</a
+              >
+              <a
+                href="blog.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Blog</a
+              >
+              <a
+                href="careers.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Careers</a
+              >
+              <a
+                href="contact.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Contact Us</a
+              >
+            </div>
+          </div>
+
+          <div>
+            <button
+              class="w-full flex items-center justify-between px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 mobile-menu-dropdown-toggle"
+            >
+              <span>Support</span>
+              <svg
+                class="w-5 h-5 transform transition-transform"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <div class="mobile-submenu pl-4 mt-2 space-y-2">
+              <a
+                href="help-center.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Help Center</a
+              >
+              <a
+                href="faq.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >FAQs</a
+              >
+              <a
+                href="delivery-policy.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Delivery Policy</a
+              >
+              <a
+                href="return-policy.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Return Policy</a
+              >
+            </div>
+          </div>
+
+          <div class="border-t border-gray-200 pt-4 mt-2 space-y-3">
+            <a
+              href="log-in.html"
+              class="block text-center w-full bg-gray-100 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-200 transition"
+              >Log In</a
+            >
+            <a
+              href="sign-up.html"
+              class="block text-center w-full bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition"
+              >Sign Up</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-bg text-white">
+        <div
+          class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center h-[60vh] text-center"
+        >
+          <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">
+            Fresh Nigerian Foodstuffs,
+          </h1>
+          <p class="text-lg md:text-2xl mb-8">
+            Delivered Straight to Your Doorstep.
+          </p>
+          <a
+            href="#popular-products"
+            class="bg-white text-green-700 font-bold py-3 px-8 rounded-full text-lg hover:bg-green-100 transition duration-300"
+          >
+            Start Shopping
+          </a>
+        </div>
+      </section>
+
+      <section class="py-20 bg-white fade-in-section">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div class="feature-item">
+              <div
+                class="bg-green-100 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4"
+              >
+                <i class="fas fa-truck-fast text-3xl text-green-700"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">Nationwide Delivery</h3>
+              <p class="text-gray-600">
+                Fast and reliable delivery to your location, anywhere in
+                Nigeria.
+              </p>
+            </div>
+            <div class="feature-item">
+              <div
+                class="bg-green-100 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4"
+              >
+                <i class="fas fa-leaf text-3xl text-green-700"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">Farm Fresh Quality</h3>
+              <p class="text-gray-600">
+                Sourced directly from local farms to ensure maximum freshness.
+              </p>
+            </div>
+            <div class="feature-item">
+              <div
+                class="bg-green-100 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4"
+              >
+                <i class="fas fa-shield-halved text-3xl text-green-700"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">Secure Payments</h3>
+              <p class="text-gray-600">
+                Your transactions are 100% safe and secure with our payment
+                gateways.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-20 bg-gray-50 fade-in-section">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-3xl font-bold text-center mb-12">Shop By Category</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <a
+              href="fresh-produce.html"
+              class="relative category-card rounded-lg overflow-hidden h-64 flex items-end p-6 text-white shadow-lg transform hover:-translate-y-2 transition-transform duration-300"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1518843875459-f738682238a6?q=80&w=2070&auto=format&fit=crop');
+              "
+            >
+              <div class="category-card-content">
+                <h3 class="text-2xl font-bold">Fresh Vegetables</h3>
+              </div>
+            </a>
+            <a
+              href="staples.html"
+              class="relative category-card rounded-lg overflow-hidden h-64 flex items-end p-6 text-white shadow-lg transform hover:-translate-y-2 transition-transform duration-300"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1627485743635-43259854d924?q=80&w=1974&auto=format&fit=crop');
+              "
+            >
+              <div class="category-card-content">
+                <h3 class="text-2xl font-bold">Grains & Tubers</h3>
+              </div>
+            </a>
+            <a
+              href="staples.html"
+              class="relative category-card rounded-lg overflow-hidden h-64 flex items-end p-6 text-white shadow-lg transform hover:-translate-y-2 transition-transform duration-300"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1626081035043-76228580456a?q=80&w=2070&auto=format&fit=crop');
+              "
+            >
+              <div class="category-card-content">
+                <h3 class="text-2xl font-bold">Meat & Poultry</h3>
+              </div>
+            </a>
+            <a
+              href="staples.html"
+              class="relative category-card rounded-lg overflow-hidden h-64 flex items-end p-6 text-white shadow-lg transform hover:-translate-y-2 transition-transform duration-300"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1625363404988-51963b6526ac?q=80&w=2070&auto=format&fit=crop');
+              "
+            >
+              <div class="category-card-content">
+                <h3 class="text-2xl font-bold">Oils & Spices</h3>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="popular-products" class="py-20 bg-white fade-in-section">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-3xl font-bold text-center mb-12">
+            Our Popular Picks
+          </h2>
+          <div class="swiper product-carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div
+                  class="bg-white rounded-lg shadow-md overflow-hidden group relative"
+                  data-product-id="1"
+                  data-product-name="Fresh Tomatoes"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?q=80&w=1964&auto=format&fit=crop"
+                    alt="Fresh Tomatoes"
+                    class="w-full h-56 object-cover"
+                  />
+                  <button
+                    class="wishlist-btn absolute top-3 right-3 bg-white/70 backdrop-blur-sm rounded-full w-9 h-9 flex items-center justify-center text-gray-700 hover:text-red-500 transition"
+                    aria-label="Add to wishlist"
+                  >
+                    <i class="far fa-heart text-lg"></i>
+                  </button>
+                  <div class="p-4">
+                    <h3 class="font-semibold text-lg truncate">
+                      Fresh Tomatoes (Basket)
+                    </h3>
+                    <p class="text-green-600 font-bold mt-1">₦8,500</p>
+                    <button
+                      class="add-to-cart-btn mt-4 w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div
+                  class="bg-white rounded-lg shadow-md overflow-hidden group relative"
+                  data-product-id="2"
+                  data-product-name="Long Grain Rice"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1590005024622-38933b207259?q=80&w=1974&auto=format&fit=crop"
+                    alt="Bag of Rice"
+                    class="w-full h-56 object-cover"
+                  />
+                  <button
+                    class="wishlist-btn absolute top-3 right-3 bg-white/70 backdrop-blur-sm rounded-full w-9 h-9 flex items-center justify-center text-gray-700 hover:text-red-500 transition"
+                    aria-label="Add to wishlist"
+                  >
+                    <i class="far fa-heart text-lg"></i>
+                  </button>
+                  <div class="p-4">
+                    <h3 class="font-semibold text-lg truncate">
+                      Long Grain Rice (50kg)
+                    </h3>
+                    <p class="text-green-600 font-bold mt-1">₦75,000</p>
+                    <button
+                      class="add-to-cart-btn mt-4 w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div
+                  class="bg-white rounded-lg shadow-md overflow-hidden group relative"
+                  data-product-id="3"
+                  data-product-name="Red Palm Oil"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1615485925576-8798af3d5444?q=80&w=1964&auto=format&fit=crop"
+                    alt="Palm Oil"
+                    class="w-full h-56 object-cover"
+                  />
+                  <button
+                    class="wishlist-btn absolute top-3 right-3 bg-white/70 backdrop-blur-sm rounded-full w-9 h-9 flex items-center justify-center text-gray-700 hover:text-red-500 transition"
+                    aria-label="Add to wishlist"
+                  >
+                    <i class="far fa-heart text-lg"></i>
+                  </button>
+                  <div class="p-4">
+                    <h3 class="font-semibold text-lg truncate">
+                      Red Palm Oil (5 Litres)
+                    </h3>
+                    <p class="text-green-600 font-bold mt-1">₦12,000</p>
+                    <button
+                      class="add-to-cart-btn mt-4 w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div
+                  class="bg-white rounded-lg shadow-md overflow-hidden group relative"
+                  data-product-id="4"
+                  data-product-name="Tubers of Yam"
+                >
+                  <img
+                    src="https://plus.unsplash.com/premium_photo-1678343449293-2c17406744c7?q=80&w=2070&auto=format&fit=crop"
+                    alt="Yams"
+                    class="w-full h-56 object-cover"
+                  />
+                  <button
+                    class="wishlist-btn absolute top-3 right-3 bg-white/70 backdrop-blur-sm rounded-full w-9 h-9 flex items-center justify-center text-gray-700 hover:text-red-500 transition"
+                    aria-label="Add to wishlist"
+                  >
+                    <i class="far fa-heart text-lg"></i>
+                  </button>
+                  <div class="p-4">
+                    <h3 class="font-semibold text-lg truncate">
+                      Tubers of Yam (5 units)
+                    </h3>
+                    <p class="text-green-600 font-bold mt-1">₦9,000</p>
+                    <button
+                      class="add-to-cart-btn mt-4 w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination mt-8 hidden md:block"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-20 bg-green-50 fade-in-section">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 class="text-3xl font-bold text-gray-800">
+            Buy in Bulk and Save More!
+          </h2>
+          <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+            Perfect for restaurants, event planners, and large families. Get
+            wholesale prices on all our fresh products.
+          </p>
+          <a
+            href="wholesale.html"
+            class="mt-8 inline-block bg-green-600 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-green-700 transition duration-300"
+          >
+            Make a Wholesale Enquiry
+          </a>
+        </div>
+      </section>
+
+      <section class="py-20 bg-white fade-in-section">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-3xl font-bold text-center mb-12">
+            What Our Customers Are Saying
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-gray-50 p-8 rounded-lg">
+              <p class="text-gray-600 italic">
+                "The tomatoes were so fresh! My jollof rice has never tasted
+                better. Delivery to Lekki was surprisingly fast too."
+              </p>
+              <div class="flex items-center mt-6">
+                <img
+                  class="w-12 h-12 rounded-full object-cover"
+                  src="https://randomuser.me/api/portraits/women/44.jpg"
+                  alt="Customer avatar"
+                />
+                <div class="ml-4">
+                  <p class="font-semibold text-gray-800">Chioma Okoro</p>
+                  <p class="text-sm text-gray-500">Lekki, Lagos</p>
+                </div>
+              </div>
+            </div>
+            <div class="bg-gray-50 p-8 rounded-lg">
+              <p class="text-gray-600 italic">
+                "I order yams and palm oil for my restaurant every week. The
+                quality is consistent and the wholesale price is unbeatable."
+              </p>
+              <div class="flex items-center mt-6">
+                <img
+                  class="w-12 h-12 rounded-full object-cover"
+                  src="https://randomuser.me/api/portraits/men/32.jpg"
+                  alt="Customer avatar"
+                />
+                <div class="ml-4">
+                  <p class="font-semibold text-gray-800">Adewale Johnson</p>
+                  <p class="text-sm text-gray-500">Ikeja, Lagos</p>
+                </div>
+              </div>
+            </div>
+            <div class="bg-gray-50 p-8 rounded-lg">
+              <p class="text-gray-600 italic">
+                "Finally, a reliable place to get fresh produce online. The
+                website is so easy to use. Highly recommended!"
+              </p>
+              <div class="flex items-center mt-6">
+                <img
+                  class="w-12 h-12 rounded-full object-cover"
+                  src="https://randomuser.me/api/portraits/women/65.jpg"
+                  alt="Customer avatar"
+                />
+                <div class="ml-4">
+                  <p class="font-semibold text-gray-800">Aisha Bello</p>
+                  <p class="text-sm text-gray-500">Abuja</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="mb-4 lg:mb-0">
+            <h3 class="text-lg font-bold mb-2">
+              Food<span class="text-green-400"><sub>4</sub></span
+              >Nigeria
+            </h3>
+            <p class="text-gray-400 text-sm">
+              Your one-stop shop for fresh and affordable Nigerian foodstuffs,
+              delivered with care.
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold text-base mb-3">Company</h4>
+            <ul class="space-y-1.5 text-sm">
+              <li>
+                <a
+                  href="about.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="blog.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Blog</a
+                >
+              </li>
+              <li>
+                <a
+                  href="careers.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Careers</a
+                >
+              </li>
+              <li>
+                <a
+                  href="contact.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-base mb-3">Support</h4>
+            <ul class="space-y-1.5 text-sm">
+              <li>
+                <a
+                  href="help-center.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Help Center</a
+                >
+              </li>
+              <li>
+                <a
+                  href="faq.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >FAQs</a
+                >
+              </li>
+              <li>
+                <a
+                  href="delivery-policy.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Delivery Policy</a
+                >
+              </li>
+              <li>
+                <a
+                  href="return-policy.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Return Policy</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-base mb-3">Legal</h4>
+            <ul class="space-y-1.5 text-sm">
+              <li>
+                <a
+                  href="privacy-policy.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a
+                  href="terms-of-service.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Terms of Service</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-700 mt-6 pt-4 flex flex-col sm:flex-row justify-between items-center"
+        >
+          <p class="text-gray-500 text-xs mb-4 sm:mb-0">
+            © 2025 Food4Nigeria. All Rights Reserved.
+          </p>
+          <div class="flex items-center space-x-4">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg"
+              alt="Visa"
+              class="h-5 bg-white rounded px-1"
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg"
+              alt="Mastercard"
+              class="h-5"
+            />
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div
+      id="toast-notification"
+      class="fixed bottom-5 right-5 bg-gray-900 text-white py-3 px-6 rounded-lg shadow-lg opacity-0 transform translate-y-3 pointer-events-none"
+    >
+      <p id="toast-message"></p>
+    </div>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const Food4NigeriaApp = {
+          state: { wishlist: [], cartCount: 0 },
+          elements: {
+            wishlistCounter: document.getElementById('wishlist-counter'),
+            cartCounter: document.getElementById('cart-counter'),
+            toast: document.getElementById('toast-notification'),
+            toastMessage: document.getElementById('toast-message'),
+            mobileMenuButton: document.getElementById('mobile-menu-button'),
+            mobileMenu: document.getElementById('mobile-menu'),
+            mobileDropdownToggles: document.querySelectorAll(
+              '.mobile-menu-dropdown-toggle'
+            ),
+            productCarousel: document.querySelector('.product-carousel'),
+            newsletterForms: [
+              // Changed to array to match wholesale.html
+              document.getElementById('newsletter-form'),
+            ],
+          },
+          init() {
+            this.loadState();
+            this.updateUI();
+            this.bindEventListeners();
+            this.initCarousel();
+            this.initScrollAnimations();
+          },
+          loadState() {
+            const storedState = JSON.parse(
+              localStorage.getItem('food4NigeriaState')
+            );
+            if (storedState) {
+              this.state = { ...this.state, ...storedState };
+            }
+          },
+          saveState() {
+            localStorage.setItem(
+              'food4NigeriaState',
+              JSON.stringify(this.state)
+            );
+          },
+          updateUI() {
+            this.elements.cartCounter.textContent = this.state.cartCount;
+            this.elements.wishlistCounter.textContent =
+              this.state.wishlist.length;
+            this.updateWishlistIcons();
+          },
+          showToast(message, duration = 3000) {
+            // Increased duration to match wholesale.html
+            this.elements.toastMessage.textContent = message;
+            this.elements.toast.classList.remove('opacity-0', 'translate-y-3');
+            setTimeout(() => {
+              this.elements.toast.classList.add('opacity-0', 'translate-y-3');
+            }, duration);
+          },
+          bindEventListeners() {
+            if (this.elements.mobileMenuButton) {
+              this.elements.mobileMenuButton.addEventListener('click', () => {
+                this.elements.mobileMenu.classList.toggle('hidden');
+              });
+            }
+            this.elements.mobileDropdownToggles.forEach((toggle) => {
+              toggle.addEventListener('click', () => {
+                const submenu = toggle.nextElementSibling;
+                const icon = toggle.querySelector('svg');
+
+                // Close other open submenus
+                this.elements.mobileDropdownToggles.forEach((otherToggle) => {
+                  if (otherToggle !== toggle) {
+                    const otherSubmenu = otherToggle.nextElementSibling;
+                    const otherIcon = otherToggle.querySelector('svg');
+                    otherSubmenu.style.maxHeight = null;
+                    otherIcon.style.transform = 'rotate(0deg)';
+                  }
+                });
+
+                if (submenu.style.maxHeight) {
+                  submenu.style.maxHeight = null;
+                  icon.style.transform = 'rotate(0deg)';
+                } else {
+                  submenu.style.maxHeight = submenu.scrollHeight + 'px';
+                  icon.style.transform = 'rotate(180deg)';
+                }
+              });
+            });
+
+            if (this.elements.productCarousel) {
+              this.elements.productCarousel.addEventListener('click', (e) => {
+                const cartBtn = e.target.closest('.add-to-cart-btn');
+                const wishlistBtn = e.target.closest('.wishlist-btn');
+
+                if (cartBtn) {
+                  const productCard = cartBtn.closest('[data-product-id]');
+                  this.addToCart(productCard);
+                }
+                if (wishlistBtn) {
+                  const productCard = wishlistBtn.closest('[data-product-id]');
+                  this.toggleWishlist(productCard);
+                }
+              });
+            }
+
+            // Handle newsletter form submissions
+            this.elements.newsletterForms.forEach((form) => {
+              if (form) {
+                form.addEventListener('submit', (e) => {
+                  e.preventDefault();
+                  const emailInput = form.querySelector('input[type="email"]');
+                  if (emailInput && emailInput.value) {
+                    this.showToast('Thank you for subscribing!', 3000);
+                    emailInput.value = '';
+                  }
+                });
+              }
+            });
+          },
+
+          addToCart(productCard) {
+            const productName = productCard.dataset.productName;
+            this.state.cartCount++;
+            this.saveState();
+            this.updateUI();
+            this.showToast(`${productName} added to cart!`);
+          },
+
+          toggleWishlist(productCard) {
+            const productId = productCard.dataset.productId;
+            const icon = productCard.querySelector('.wishlist-btn i');
+
+            if (this.state.wishlist.includes(productId)) {
+              this.state.wishlist = this.state.wishlist.filter(
+                (id) => id !== productId
+              );
+            } else {
+              this.state.wishlist.push(productId);
+            }
+
+            this.saveState();
+            this.updateUI();
+          },
+
+          updateWishlistIcons() {
+            document.querySelectorAll('[data-product-id]').forEach((card) => {
+              const productId = card.dataset.productId;
+              const icon = card.querySelector('.wishlist-btn i');
+              if (icon) {
+                if (this.state.wishlist.includes(productId)) {
+                  icon.classList.remove('far', 'fa-heart');
+                  icon.classList.add('fas', 'fa-heart', 'text-red-500');
+                } else {
+                  icon.classList.remove('fas', 'fa-heart', 'text-red-500');
+                  icon.classList.add('far', 'fa-heart');
+                }
+              }
+            });
+          },
+
+          initCarousel() {
+            if (this.elements.productCarousel) {
+              new Swiper(this.elements.productCarousel, {
+                loop: true,
+                slidesPerView: 2,
+                spaceBetween: 16,
+                pagination: {
+                  el: '.swiper-pagination',
+                  clickable: true,
+                },
+                navigation: {
+                  nextEl: '.swiper-button-next',
+                  prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                  640: { slidesPerView: 2, spaceBetween: 20 },
+                  768: { slidesPerView: 3, spaceBetween: 24 },
+                  1024: { slidesPerView: 4, spaceBetween: 24 },
+                },
+              });
+            }
+          },
+
+          initScrollAnimations() {
+            const sections = document.querySelectorAll('.fade-in-section');
+            const observer = new IntersectionObserver(
+              (entries) => {
+                entries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                  }
+                });
+              },
+              { threshold: 0.1 }
+            );
+
+            sections.forEach((section) => observer.observe(section));
+          },
+        };
+
+        Food4NigeriaApp.init();
+      });
+    </script>
+  </body>
+</html>

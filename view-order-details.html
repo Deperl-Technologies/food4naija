@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food4Nigeria - Order Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu { display: none; animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        #mobile-menu { transition: transform 0.3s ease-in-out; }
+        #mobile-menu.hidden { transform: translateX(-100%); }
+        .mobile-submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out;
+        }
+        #toast-notification { transition: opacity 0.3s, transform 0.3s; }
+        .details-container {
+            min-height: calc(100vh - 20rem); /* Adjust based on header/footer height */
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="Homepage.html" class="text-2xl font-bold text-green-700">Food<span style="color:grey"><sub>4</sub></span>Nigeria</a>
+                </div>
+
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="Homepage.html" class="text-gray-600 hover:text-green-700 transition-colors duration-300">Home</a>
+
+                    <div class="relative dropdown">
+                        <button class="flex items-center text-gray-600 hover:text-green-700 focus:outline-none transition-colors duration-300">
+                            <span>Market</span>
+                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                        </button>
+                        <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20">
+                            <a href="freshProduce.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700">Fresh Produce</a>
+                            <a href="staple.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700">Staples</a>
+                            <a href="wholesale.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700">Wholesale</a>
+                        </div>
+                    </div>
+
+                    <div class="relative dropdown">
+                        <button class="flex items-center text-gray-600 hover:text-green-700 focus:outline-none transition-colors duration-300">
+                            <span>Company</span>
+                             <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                        </button>
+                        <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20">
+                            <a href="about.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700">About Us</a>
+                            <a href="blog.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700">Blog</a>
+                            <a href="careers.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700">Careers</a>
+                            <a href="contact.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700">Contact Us</a>
+                        </div>
+                    </div>
+
+                    <div class="relative dropdown">
+                        <button class="flex items-center text-gray-600 hover:text-green-700 focus:outline-none transition-colors duration-300">
+                            <span>Support</span>
+                             <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                        </button>
+                        <div class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20">
+                            <a href="help-center.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700">Help Center</a>
+                            <a href="faq.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700">FAQs</a>
+                            <a href="delivery-info.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700">Delivery Policy</a>
+                            <a href="return-policy.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700">Return Policy</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="flex items-center space-x-4">
+                    <a href="wishlist.html" class="text-gray-600 hover:text-green-700 relative pl-3" aria-label="View Wishlist">
+                        <i class="fas fa-heart text-xl"></i>
+                        <span id="wishlist-counter" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </a>
+                    <a href="cart.html" class="text-gray-600 hover:text-green-700 relative" aria-label="View Cart">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span id="cart-counter" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </a>
+                    <div id="auth-links" class="hidden lg:flex items-center space-x-2">
+                        <a href="login.html" class="text-gray-600 hover:text-green-700 px-4 py-2 rounded-md transition-colors duration-300">Log In</a>
+                        <a href="signup.html" class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition-colors duration-300">Sign Up</a>
+                    </div>
+                    <div id="account-info" class="hidden lg:flex items-center relative dropdown">
+                        <button id="account-link" class="flex items-center text-gray-600 hover:text-green-700 font-medium focus:outline-none">
+                            <i class="fas fa-user-circle text-xl mr-2"></i> 
+                            <span id="header-user-name">My Account</span>
+                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                        </button>
+                        <div class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20">
+                            <a href="user-account.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700">Dashboard</a>
+                            <a href="#" id="logout-button-desktop" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700">Logout</a>
+                        </div>
+                    </div>
+                    <div class="lg:hidden">
+                        <button id="mobile-menu-button" class="text-gray-600 hover:text-green-700 focus:outline-none" aria-label="Open menu">
+                            <i class="fas fa-bars text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-200">
+            <div class="p-4 space-y-2">
+                <a href="Homepage.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-green-50 hover:text-green-700">Home</a>
+                
+                <div>
+                    <button class="w-full flex items-center justify-between px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 mobile-menu-dropdown-toggle">
+                        <span>Market</span>
+                        <svg class="w-5 h-5 transform transition-transform" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </button>
+                    <div class="mobile-submenu pl-4 mt-2 space-y-2">
+                        <a href="freshProduce.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700">Fresh Produce</a>
+                        <a href="staple.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700">Staples</a>
+                        <a href="wholesale.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700">Wholesale</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <button class="w-full flex items-center justify-between px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 mobile-menu-dropdown-toggle">
+                        <span>Company</span>
+                        <svg class="w-5 h-5 transform transition-transform" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </button>
+                    <div class="mobile-submenu pl-4 mt-2 space-y-2">
+                        <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700">About Us</a>
+                        <a href="blog.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700">Blog</a>
+                        <a href="careers.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700">Careers</a>
+                        <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700">Contact Us</a>
+                    </div>
+                </div>
+
+                <div>
+                    <button class="w-full flex items-center justify-between px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 mobile-menu-dropdown-toggle">
+                        <span>Support</span>
+                        <svg class="w-5 h-5 transform transition-transform" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </button>
+                    <div class="mobile-submenu pl-4 mt-2 space-y-2">
+                        <a href="help-center.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700">Help Center</a>
+                        <a href="faq.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700">FAQs</a>
+                        <a href="delivery-info.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700">Delivery Policy</a>
+                        <a href="return-policy.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700">Return Policy</a>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-200 pt-4 mt-2 space-y-3">
+                    <a href="login.html" id="mobile-login-link" class="block text-center w-full bg-gray-100 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-200 transition">Log In</a>
+                    <a href="signup.html" id="mobile-signup-link" class="block text-center w-full bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition">Sign Up</a>
+                    <a href="user-account.html" id="mobile-account-link" class="block text-center w-full bg-gray-100 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-200 transition hidden">My Account</a>
+                    <a href="#" id="logout-button-mobile" class="block text-center w-full bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 transition hidden">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-10 bg-gray-100 details-container">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="mb-6 text-gray-600 text-sm">
+                <a href="user-account.html#orders" class="hover:underline">My Orders</a> &gt;
+                <span id="breadcrumb-order-id" class="font-medium">Order #...</span>
+            </nav>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Order Summary Column -->
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h1 class="text-2xl font-bold text-gray-800">Order <span id="order-id">#F4N-12345</span></h1>
+                            <span id="order-status" class="bg-blue-100 text-blue-600 py-1 px-3 rounded-full font-medium text-sm">Shipped</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 text-sm text-gray-600">
+                            <div>
+                                <p class="font-medium">Order Date</p>
+                                <p id="order-date">Mar 15, 2025</p>
+                            </div>
+                            <div>
+                                <p class="font-medium">Estimated Delivery</p>
+                                <p id="delivery-date">Mar 20, 2025</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4">Order Items</h2>
+                        <div id="order-items-list" class="space-y-4">
+                            <!-- Order items will be populated here by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shipping & Total Column -->
+                <div class="space-y-6">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4">Shipping & Billing</h2>
+                        <div class="space-y-4">
+                            <div>
+                                <h3 class="font-semibold text-gray-700 mb-1">Shipping Address</h3>
+                                <p id="shipping-address" class="text-sm text-gray-600">
+                                    John Doe<br>
+                                    123 Market Street, Ikeja<br>
+                                    Lagos, Nigeria<br>
+                                    +234 801 234 5678
+                                </p>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-700 mb-1">Payment Method</h3>
+                                <div class="flex items-center space-x-2 text-sm text-gray-600">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg" alt="Mastercard" class="h-5">
+                                    <span>Mastercard ending in 5678</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4">Order Summary</h2>
+                        <div class="space-y-2 text-sm text-gray-700">
+                            <div class="flex justify-between">
+                                <span>Subtotal</span>
+                                <span id="subtotal">₦9,000</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Shipping</span>
+                                <span id="shipping-cost">₦950</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Tax</span>
+                                <span id="tax">₦0.00</span>
+                            </div>
+                        </div>
+                        <div class="border-t border-gray-200 mt-4 pt-4 flex justify-between items-center text-lg font-bold text-gray-800">
+                            <span>Order Total</span>
+                            <span id="order-total">₦9,950</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="mb-4 lg:mb-0">
+                    <h3 class="text-lg font-bold mb-2">Food<span class="text-green-400"><sub>4</sub></span>Nigeria</h3>
+                    <p class="text-gray-400 text-sm">Your one-stop shop for fresh and affordable Nigerian foodstuffs, delivered with care.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-base mb-3">Company</h4>
+                    <ul class="space-y-1.5 text-sm">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="careers.html" class="text-gray-400 hover:text-white transition">Careers</a></li>
+                        <li><a href="wholesale.html" class="text-gray-400 hover:text-white transition">Wholesale</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-base mb-3">Support</h4>
+                    <ul class="space-y-1.5 text-sm">
+                        <li><a href="help-center.html" class="text-gray-400 hover:text-white transition">Help Center</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition">FAQs</a></li>
+                        <li><a href="delivery-info.html" class="text-gray-400 hover:text-white transition">Delivery Info</a></li>
+                        <li><a href="return-policy.html" class="text-gray-400 hover:text-white transition">Return Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-base mb-3">Legal</h4>
+                    <ul class="space-y-1.5 text-sm">
+                        <li><a href="privacy-policy.html" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="termofService.html" class="text-gray-400 hover:text-white transition">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-6 pt-4 flex flex-col sm:flex-row justify-between items-center">
+                <p class="text-gray-500 text-xs mb-4 sm:mb-0">© 2025 Food4Nigeria. All Rights Reserved.</p>
+                <div class="flex items-center space-x-4">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" class="h-5 bg-white rounded px-1">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg" alt="Mastercard" class="h-5">
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="toast-notification" class="fixed bottom-5 right-5 bg-gray-900 text-white py-3 px-6 rounded-lg shadow-lg opacity-0 transform translate-y-3 pointer-events-none">
+        <p id="toast-message"></p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const Food4NigeriaApp = {
+                state: {
+                    wishlist: [],
+                    cartItems: [],
+                    loggedInUser: null,
+                },
+                elements: {
+                    wishlistCounter: document.getElementById('wishlist-counter'),
+                    cartCounter: document.getElementById('cart-counter'),
+                    toast: document.getElementById('toast-notification'),
+                    toastMessage: document.getElementById('toast-message'),
+                    authLinks: document.getElementById('auth-links'),
+                    accountInfo: document.getElementById('account-info'),
+                    accountLink: document.getElementById('account-link'),
+                    headerUserName: document.getElementById('header-user-name'),
+                    mobileLoginLink: document.getElementById('mobile-login-link'),
+                    mobileSignupLink: document.getElementById('mobile-signup-link'),
+                    mobileAccountLink: document.getElementById('mobile-account-link'),
+                    logoutButtonDesktop: document.getElementById('logout-button-desktop'),
+                    logoutButtonMobile: document.getElementById('logout-button-mobile'),
+                    mobileMenuButton: document.getElementById('mobile-menu-button'),
+                    mobileMenu: document.getElementById('mobile-menu'),
+                    mobileDropdownToggles: document.querySelectorAll('.mobile-menu-dropdown-toggle'),
+                    orderIdDisplay: document.getElementById('order-id'),
+                    breadcrumbOrderId: document.getElementById('breadcrumb-order-id'),
+                    orderStatusDisplay: document.getElementById('order-status'),
+                    orderDateDisplay: document.getElementById('order-date'),
+                    deliveryDateDisplay: document.getElementById('delivery-date'),
+                    shippingAddressDisplay: document.getElementById('shipping-address'),
+                    orderItemsList: document.getElementById('order-items-list'),
+                    subtotalDisplay: document.getElementById('subtotal'),
+                    shippingCostDisplay: document.getElementById('shipping-cost'),
+                    taxDisplay: document.getElementById('tax'),
+                    orderTotalDisplay: document.getElementById('order-total')
+                },
+
+                // Mock data for orders
+                mockOrders: {
+                    'F4N-12345': {
+                        id: 'F4N-12345',
+                        date: 'Mar 15, 2025',
+                        deliveryDate: 'Mar 20, 2025',
+                        status: 'Shipped',
+                        shippingAddress: 'John Doe<br>123 Market Street, Ikeja<br>Lagos, Nigeria<br>+234 801 234 5678',
+                        paymentMethod: 'Mastercard ending in 5678',
+                        paymentIcon: 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg',
+                        items: [
+                            { name: 'Fresh Tomatoes', price: ₦1500, quantity: 2, image: 'https://placehold.co/100x100/FF5733/FFFFFF?text=Tomatoes' },
+                            { name: 'Onions', price: ₦2000, quantity: 1, image: 'https://placehold.co/100x100/FFC300/000000?text=Onions' },
+                            { name: 'Garri (5kg)', price: ₦5500, quantity: 1, image: 'https://placehold.co/100x100/964B00/FFFFFF?text=Garri' },
+                        ],
+                        shippingCost: ₦950,
+                        tax: 0
+                    },
+                    'F4N-54321': {
+                        id: 'F4N-54321',
+                        date: 'Dec 20, 2024',
+                        deliveryDate: 'Jan 5, 2025',
+                        status: 'Processing',
+                        shippingAddress: 'John Doe<br>123 Market Street, Ikeja<br>Lagos, Nigeria<br>+234 801 234 5678',
+                        paymentMethod: 'Visa ending in 1234',
+                        paymentIcon: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg',
+                        items: [
+                            { name: 'Yam (1 tuber)', price: ₦4500, quantity: 4, image: 'https://placehold.co/100x100/8B4513/FFFFFF?text=Yam' },
+                            { name: 'Palm Oil (5L)', price: ₦4000, quantity: 1, image: 'https://placehold.co/100x100/A52A2A/FFFFFF?text=Palm Oil' },
+                        ],
+                        shippingCost: ₦800,
+                        tax: 0
+                    },
+                    'F4N-67890': {
+                        id: 'F4N-67890',
+                        date: 'Jan 10, 2025',
+                        deliveryDate: 'Jan 15, 2025',
+                        status: 'Delivered',
+                        shippingAddress: 'John Doe<br>123 Market Street, Ikeja<br>Lagos, Nigeria<br>+234 801 234 5678',
+                        paymentMethod: 'Visa ending in 1234',
+                        paymentIcon: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg',
+                        items: [
+                            { name: 'Fresh Ugwu', price: ₦1000, quantity: 1, image: 'https://placehold.co/100x100/008000/FFFFFF?text=Ugwu' },
+                            { name: 'Ponmo', price: ₦500, quantity: 1, image: 'https://placehold.co/100x100/C0C0C0/000000?text=Ponmo' },
+                            { name: 'Pepper Mix', price: ₦1200, quantity: 1, image: 'https://placehold.co/100x100/FF0000/FFFFFF?text=Pepper' },
+                            { name: 'Meat', price: ₦5000, quantity: 1, image: 'https://placehold.co/100x100/800000/FFFFFF?text=Meat' },
+                            { name: 'Chicken', price: ₦2500, quantity: 2, image: 'https://placehold.co/100x100/FFD700/000000?text=Chicken' },
+                        ],
+                        shippingCost: ₦800,
+                        tax: 0
+                    }
+                },
+                
+                init() {
+                    this.loadState();
+                    this.updateUI();
+                    this.bindEventListeners();
+                    this.renderOrderDetails();
+                },
+
+                loadState() {
+                    try {
+                        const storedState = JSON.parse(localStorage.getItem('food4NigeriaState'));
+                        if (storedState) {
+                            this.state = { ...this.state, ...storedState };
+                            if (!Array.isArray(this.state.wishlist)) {
+                                this.state.wishlist = [];
+                            }
+                            if (!Array.isArray(this.state.cartItems)) {
+                                this.state.cartItems = [];
+                            }
+                        }
+                    } catch (e) {
+                        console.error("Error loading state from localStorage:", e);
+                        localStorage.removeItem('food4NigeriaState');
+                    }
+                },
+                saveState() {
+                    localStorage.setItem('food4NigeriaState', JSON.stringify(this.state));
+                },
+
+                updateUI() {
+                    this.elements.cartCounter.textContent = this.state.cartItems.reduce((sum, item) => sum + item.quantity, 0);
+                    this.elements.wishlistCounter.textContent = this.state.wishlist.length;
+
+                    if (this.state.loggedInUser) {
+                        this.elements.authLinks.classList.add('hidden');
+                        this.elements.accountInfo.classList.remove('hidden');
+                        if (this.elements.headerUserName) {
+                            this.elements.headerUserName.textContent = this.state.loggedInUser.name || 'My Account';
+                        }
+                        this.elements.mobileLoginLink.classList.add('hidden');
+                        this.elements.mobileSignupLink.classList.add('hidden');
+                        this.elements.mobileAccountLink.classList.remove('hidden');
+                        this.elements.logoutButtonMobile.classList.remove('hidden');
+                    } else {
+                        this.elements.authLinks.classList.remove('hidden');
+                        this.elements.accountInfo.classList.add('hidden');
+                        this.elements.mobileLoginLink.classList.remove('hidden');
+                        this.elements.mobileSignupLink.classList.remove('hidden');
+                        this.elements.mobileAccountLink.classList.add('hidden');
+                        this.elements.logoutButtonMobile.classList.add('hidden');
+                    }
+                },
+                logout() {
+                    this.state.loggedInUser = null;
+                    this.saveState();
+                    this.showToast('You have been logged out.', 3000);
+                    setTimeout(() => {
+                        window.location.href = 'Homepage.html';
+                    }, 1000);
+                },
+
+                showToast(message, duration = 3000) {
+                    this.elements.toastMessage.textContent = message;
+                    this.elements.toast.classList.remove('opacity-0', 'translate-y-3', 'pointer-events-none');
+                    this.elements.toast.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+
+                    setTimeout(() => {
+                        this.elements.toast.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                        this.elements.toast.classList.add('opacity-0', 'translate-y-3', 'pointer-events-none');
+                    }, duration);
+                },
+
+                bindEventListeners() {
+                    if (this.elements.mobileMenuButton) {
+                        this.elements.mobileMenuButton.addEventListener('click', () => {
+                            this.elements.mobileMenu.classList.toggle('hidden');
+                        });
+                    }
+                    this.elements.mobileDropdownToggles.forEach(toggle => {
+                        toggle.addEventListener('click', () => {
+                            const submenu = toggle.nextElementSibling;
+                            const icon = toggle.querySelector('svg');
+
+                            this.elements.mobileDropdownToggles.forEach(otherToggle => {
+                                if (otherToggle !== toggle) {
+                                    const otherSubmenu = otherToggle.nextElementSibling;
+                                    const otherIcon = otherToggle.querySelector('svg');
+                                    otherSubmenu.style.maxHeight = null;
+                                    otherIcon.style.transform = 'rotate(0deg)';
+                                }
+                            });
+
+                            if (submenu.style.maxHeight) {
+                                submenu.style.maxHeight = null;
+                                icon.style.transform = 'rotate(0deg)';
+                            } else {
+                                submenu.style.maxHeight = submenu.scrollHeight + "px";
+                                icon.style.transform = 'rotate(180deg)';
+                            }
+                        });
+                    });
+
+                    if (this.elements.logoutButtonDesktop) {
+                        this.elements.logoutButtonDesktop.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            this.logout();
+                        });
+                    }
+                    if (this.elements.logoutButtonMobile) {
+                        this.elements.logoutButtonMobile.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            this.logout();
+                        });
+                    }
+                },
+                
+                renderOrderDetails() {
+                    // Get order ID from URL parameter
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const orderId = urlParams.get('orderId');
+                    const order = this.mockOrders[orderId];
+                    
+                    if (order) {
+                        // Update basic info
+                        this.elements.orderIdDisplay.textContent = `#${order.id}`;
+                        this.elements.breadcrumbOrderId.textContent = `Order #${order.id}`;
+                        this.elements.orderStatusDisplay.textContent = order.status;
+                        
+                        // Set status color
+                        if (order.status === 'Shipped') {
+                            this.elements.orderStatusDisplay.classList.remove('bg-yellow-100', 'text-yellow-600', 'bg-green-100', 'text-green-600');
+                            this.elements.orderStatusDisplay.classList.add('bg-blue-100', 'text-blue-600');
+                        } else if (order.status === 'Processing') {
+                            this.elements.orderStatusDisplay.classList.remove('bg-blue-100', 'text-blue-600', 'bg-green-100', 'text-green-600');
+                            this.elements.orderStatusDisplay.classList.add('bg-yellow-100', 'text-yellow-600');
+                        } else if (order.status === 'Delivered') {
+                            this.elements.orderStatusDisplay.classList.remove('bg-blue-100', 'text-blue-600', 'bg-yellow-100', 'text-yellow-600');
+                            this.elements.orderStatusDisplay.classList.add('bg-green-100', 'text-green-600');
+                        }
+
+                        this.elements.orderDateDisplay.textContent = order.date;
+                        this.elements.deliveryDateDisplay.textContent = order.deliveryDate;
+                        this.elements.shippingAddressDisplay.innerHTML = order.shippingAddress;
+                        
+                        // Render order items
+                        let subtotal = 0;
+                        this.elements.orderItemsList.innerHTML = '';
+                        order.items.forEach(item => {
+                            const itemTotal = item.price * item.quantity;
+                            subtotal += itemTotal;
+                            const itemHTML = `
+                                <div class="flex items-center space-x-4">
+                                    <img src="${item.image}" alt="${item.name}" class="h-16 w-16 rounded-md object-cover border border-gray-200">
+                                    <div class="flex-grow">
+                                        <p class="font-semibold text-gray-800">${item.name}</p>
+                                        <p class="text-sm text-gray-500">Qty: ${item.quantity}</p>
+                                    </div>
+                                    <p class="font-medium text-gray-700">₦${itemTotal.toLocaleString()}</p>
+                                </div>
+                            `;
+                            this.elements.orderItemsList.insertAdjacentHTML('beforeend', itemHTML);
+                        });
+                        
+                        // Render summary totals
+                        this.elements.subtotalDisplay.textContent = `₦${subtotal.toLocaleString()}`;
+                        this.elements.shippingCostDisplay.textContent = `₦${order.shippingCost.toLocaleString()}`;
+                        this.elements.taxDisplay.textContent = `₦${order.tax.toLocaleString()}`;
+                        const total = subtotal + order.shippingCost + order.tax;
+                        this.elements.orderTotalDisplay.textContent = `₦${total.toLocaleString()}`;
+
+                    } else {
+                        // Handle case where order is not found
+                        this.elements.orderIdDisplay.textContent = `#Order Not Found`;
+                        this.elements.breadcrumbOrderId.textContent = `Order Not Found`;
+                        this.elements.orderStatusDisplay.textContent = 'Error';
+                        this.elements.orderStatusDisplay.classList.add('bg-red-100', 'text-red-600');
+                        this.elements.orderItemsList.innerHTML = '<p class="text-center text-gray-500">The requested order could not be found.</p>';
+                    }
+                }
+            };
+            Food4NigeriaApp.init();
+        });
+    </script>
+</body>
+</html>

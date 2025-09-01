@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food4Nigeria - Thank You for Your Order!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+      .dropdown-menu {
+        display: none;
+        animation: fadeIn 0.3s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      #mobile-menu {
+        transition: transform 0.3s ease-in-out;
+      }
+      #mobile-menu.hidden {
+        transform: translateX(-100%);
+      }
+      .mobile-submenu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-in-out;
+      }
+      #toast-notification {
+        transition: opacity 0.3s, transform 0.3s;
+      }
+
+      /* Specific styles for thank-you page */
+      .thank-you-container {
+        min-height: calc(
+          100vh - 20rem
+        ); /* Adjust based on header/footer height */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <header class="bg-white shadow-md sticky top-0 z-50">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <div class="flex-shrink-0">
+            <a href="index.html" class="text-2xl font-bold text-green-700"
+              >Food<span style="color: grey"><sub>4</sub></span
+              >Nigeria</a
+            >
+          </div>
+
+          <nav class="hidden lg:flex items-center space-x-8">
+            <a
+              href="index.html"
+              class="text-gray-600 hover:text-green-700 transition-colors duration-300"
+              >Home</a
+            >
+
+            <div class="relative dropdown">
+              <button
+                class="flex items-center text-gray-600 hover:text-green-700 focus:outline-none transition-colors duration-300"
+              >
+                <span>Market</span>
+                <svg
+                  class="w-4 h-4 ml-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20"
+              >
+                <a
+                  href="fresh-produce.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Fresh Produce</a
+                >
+                <a
+                  href="staples.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Staples</a
+                >
+                <a
+                  href="wholesale.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Wholesale</a
+                >
+              </div>
+            </div>
+
+            <div class="relative dropdown">
+              <button
+                class="flex items-center text-gray-600 hover:text-green-700 focus:outline-none transition-colors duration-300"
+              >
+                <span>Company</span>
+                <svg
+                  class="w-4 h-4 ml-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20"
+              >
+                <a
+                  href="about.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >About Us</a
+                >
+                <a
+                  href="blog.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Blog</a
+                >
+                <a
+                  href="careers.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Careers</a
+                >
+                <a
+                  href="contact.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Contact Us</a
+                >
+              </div>
+            </div>
+
+            <div class="relative dropdown">
+              <button
+                class="flex items-center text-gray-600 hover:text-green-700 focus:outline-none transition-colors duration-300"
+              >
+                <span>Support</span>
+                <svg
+                  class="w-4 h-4 ml-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20"
+              >
+                <a
+                  href="help-center.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Help Center</a
+                >
+                <a
+                  href="faq.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >FAQs</a
+                >
+                <a
+                  href="delivery-policy.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Delivery Policy</a
+                >
+                <a
+                  href="return-policy.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Return Policy</a
+                >
+              </div>
+            </div>
+          </nav>
+
+          <div class="flex items-center space-x-4">
+            <a
+              href="wishlist.html"
+              class="text-gray-600 hover:text-green-700 relative pl-3"
+              aria-label="View Wishlist"
+            >
+              <i class="fas fa-heart text-xl"></i>
+              <span
+                id="wishlist-counter"
+                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+                >0</span
+              >
+            </a>
+            <a
+              href="cart.html"
+              class="text-gray-600 hover:text-green-700 relative"
+              aria-label="View Cart"
+            >
+              <i class="fas fa-shopping-cart text-xl"></i>
+              <span
+                id="cart-counter"
+                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+                >0</span
+              >
+            </a>
+            <div id="auth-links" class="hidden lg:flex items-center space-x-2">
+              <a
+                href="log-in.html"
+                class="text-gray-600 hover:text-green-700 px-4 py-2 rounded-md transition-colors duration-300"
+                >Log In</a
+              >
+              <a
+                href="sign-up.html"
+                class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition-colors duration-300"
+                >Sign Up</a
+              >
+            </div>
+            <div
+              id="account-info"
+              class="hidden lg:flex items-center relative dropdown"
+            >
+              <button
+                id="account-link"
+                class="flex items-center text-gray-600 hover:text-green-700 font-medium focus:outline-none"
+              >
+                <i class="fas fa-user-circle text-xl mr-2"></i>
+                <span id="header-user-name">My Account</span>
+                <svg
+                  class="w-4 h-4 ml-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20"
+              >
+                <a
+                  href="wish-list.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Dashboard</a
+                >
+                <a
+                  href="#"
+                  id="logout-button-desktop"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  >Logout</a
+                >
+              </div>
+            </div>
+            <div class="lg:hidden">
+              <button
+                id="mobile-menu-button"
+                class="text-gray-600 hover:text-green-700 focus:outline-none"
+                aria-label="Open menu"
+              >
+                <i class="fas fa-bars text-xl"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="mobile-menu"
+        class="hidden lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-200"
+      >
+        <div class="p-4 space-y-2">
+          <a
+            href="index.html"
+            class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-green-50 hover:text-green-700"
+            >Home</a
+          >
+
+          <div>
+            <button
+              class="w-full flex items-center justify-between px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 mobile-menu-dropdown-toggle"
+            >
+              <span>Market</span>
+              <svg
+                class="w-5 h-5 transform transition-transform"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <div class="mobile-submenu pl-4 mt-2 space-y-2">
+              <a
+                href="fresh-produce.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Fresh Produce</a
+              >
+              <a
+                href="staples.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Staples</a
+              >
+              <a
+                href="wholesale.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Wholesale</a
+              >
+            </div>
+          </div>
+
+          <div>
+            <button
+              class="w-full flex items-center justify-between px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 mobile-menu-dropdown-toggle"
+            >
+              <span>Company</span>
+              <svg
+                class="w-5 h-5 transform transition-transform"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <div class="mobile-submenu pl-4 mt-2 space-y-2">
+              <a
+                href="about.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >About Us</a
+              >
+              <a
+                href="blog.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Blog</a
+              >
+              <a
+                href="careers.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Careers</a
+              >
+              <a
+                href="contact.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Contact Us</a
+              >
+            </div>
+          </div>
+
+          <div>
+            <button
+              class="w-full flex items-center justify-between px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 mobile-menu-dropdown-toggle"
+            >
+              <span>Support</span>
+              <svg
+                class="w-5 h-5 transform transition-transform"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <div class="mobile-submenu pl-4 mt-2 space-y-2">
+              <a
+                href="help-center.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Help Center</a
+              >
+              <a
+                href="faq.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >FAQs</a
+              >
+              <a
+                href="delivery-policy.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Delivery Policy</a
+              >
+              <a
+                href="return-policy.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-green-50 hover:text-green-700"
+                >Return Policy</a
+              >
+            </div>
+          </div>
+
+          <div class="border-t border-gray-200 pt-4 mt-2 space-y-3">
+            <a
+              href="log-in.html"
+              id="mobile-login-link"
+              class="block text-center w-full bg-gray-100 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-200 transition"
+              >Log In</a
+            >
+            <a
+              href="sign-up.html"
+              id="mobile-signup-link"
+              class="block text-center w-full bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition"
+              >Sign Up</a
+            >
+            <a
+              href="wish-list.html"
+              id="mobile-account-link"
+              class="block text-center w-full bg-gray-100 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-200 transition hidden"
+              >My Account</a
+            >
+            <a
+              href="#"
+              id="logout-button-mobile"
+              class="block text-center w-full bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 transition hidden"
+              >Logout</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="py-10 bg-gray-100 thank-you-container">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="max-w-xl mx-auto bg-white rounded-lg shadow-xl p-8 text-center"
+        >
+          <div
+            class="bg-green-100 text-green-600 rounded-full h-24 w-24 flex items-center justify-center mx-auto mb-6"
+          >
+            <i class="fas fa-check-circle text-5xl"></i>
+          </div>
+          <h1 class="text-4xl font-bold text-gray-800 mb-4">
+            Thank You for Your Order!
+          </h1>
+          <p class="text-gray-600 text-lg mb-6">
+            Your order
+            <span id="order-number" class="font-bold">#F4N-12345</span> has been
+            successfully placed. We've sent a confirmation email with all the
+            details.
+          </p>
+          <p class="text-gray-500 mb-8">
+            You can view the status of your order in your account dashboard.
+          </p>
+
+          <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a
+              href="user-account.html"
+              class="bg-green-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-green-700 transition w-full sm:w-auto"
+            >
+              <i class="fas fa-list-alt mr-2"></i> View Order Details
+            </a>
+            <a
+              href="index.html"
+              class="bg-gray-200 text-gray-700 px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-300 transition w-full sm:w-auto"
+            >
+              <i class="fas fa-home mr-2"></i> Continue Shopping
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="mb-4 lg:mb-0">
+            <h3 class="text-lg font-bold mb-2">
+              Food<span class="text-green-400"><sub>4</sub></span
+              >Nigeria
+            </h3>
+            <p class="text-gray-400 text-sm">
+              Your one-stop shop for fresh and affordable Nigerian foodstuffs,
+              delivered with care.
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold text-base mb-3">Company</h4>
+            <ul class="space-y-1.5 text-sm">
+              <li>
+                <a
+                  href="about.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="careers.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Careers</a
+                >
+              </li>
+              <li>
+                <a
+                  href="wholesale.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Wholesale</a
+                >
+              </li>
+              <li>
+                <a
+                  href="contact.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-base mb-3">Support</h4>
+            <ul class="space-y-1.5 text-sm">
+              <li>
+                <a
+                  href="help-center.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Help Center</a
+                >
+              </li>
+              <li>
+                <a
+                  href="faq.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >FAQs</a
+                >
+              </li>
+              <li>
+                <a
+                  href="delivery-info.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Delivery Info</a
+                >
+              </li>
+              <li>
+                <a
+                  href="return-policy.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Return Policy</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-base mb-3">Legal</h4>
+            <ul class="space-y-1.5 text-sm">
+              <li>
+                <a
+                  href="privacy-policy.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a
+                  href="termofService.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Terms of Service</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-700 mt-6 pt-4 flex flex-col sm:flex-row justify-between items-center"
+        >
+          <p class="text-gray-500 text-xs mb-4 sm:mb-0">
+            © 2025 Food4Nigeria. All Rights Reserved.
+          </p>
+          <div class="flex items-center space-x-4">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg"
+              alt="Visa"
+              class="h-5 bg-white rounded px-1"
+            />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg"
+              alt="Mastercard"
+              class="h-5"
+            />
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div
+      id="toast-notification"
+      class="fixed bottom-5 right-5 bg-gray-900 text-white py-3 px-6 rounded-lg shadow-lg opacity-0 transform translate-y-3 pointer-events-none"
+    >
+      <p id="toast-message"></p>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const Food4NigeriaApp = {
+          state: {
+            wishlist: [],
+            cartItems: [],
+            loggedInUser: null,
+          },
+          elements: {
+            wishlistCounter: document.getElementById('wishlist-counter'),
+            cartCounter: document.getElementById('cart-counter'),
+            toast: document.getElementById('toast-notification'),
+            toastMessage: document.getElementById('toast-message'),
+            authLinks: document.getElementById('auth-links'),
+            accountInfo: document.getElementById('account-info'),
+            accountLink: document.getElementById('account-link'),
+            headerUserName: document.getElementById('header-user-name'),
+            mobileLoginLink: document.getElementById('mobile-login-link'),
+            mobileSignupLink: document.getElementById('mobile-signup-link'),
+            mobileAccountLink: document.getElementById('mobile-account-link'),
+            logoutButtonDesktop: document.getElementById(
+              'logout-button-desktop'
+            ),
+            logoutButtonMobile: document.getElementById('logout-button-mobile'),
+            mobileMenuButton: document.getElementById('mobile-menu-button'),
+            mobileMenu: document.getElementById('mobile-menu'),
+            mobileDropdownToggles: document.querySelectorAll(
+              '.mobile-menu-dropdown-toggle'
+            ),
+          },
+
+          init() {
+            this.loadState();
+            this.clearCartAndOrderNumber();
+            this.updateUI();
+            this.bindEventListeners();
+          },
+
+          loadState() {
+            try {
+              const storedState = JSON.parse(
+                localStorage.getItem('food4NigeriaState')
+              );
+              if (storedState) {
+                this.state = { ...this.state, ...storedState };
+                if (!Array.isArray(this.state.wishlist)) {
+                  this.state.wishlist = [];
+                }
+                if (!Array.isArray(this.state.cartItems)) {
+                  this.state.cartItems = [];
+                }
+              }
+            } catch (e) {
+              console.error('Error loading state from localStorage:', e);
+              localStorage.removeItem('food4NigeriaState'); // Clear corrupted state
+            }
+          },
+          saveState() {
+            localStorage.setItem(
+              'food4NigeriaState',
+              JSON.stringify(this.state)
+            );
+          },
+
+          updateUI() {
+            this.elements.cartCounter.textContent = this.state.cartItems.reduce(
+              (sum, item) => sum + item.quantity,
+              0
+            );
+            this.elements.wishlistCounter.textContent =
+              this.state.wishlist.length;
+
+            // Header Auth/Account Links
+            if (this.state.loggedInUser) {
+              this.elements.authLinks.classList.add('hidden');
+              this.elements.accountInfo.classList.remove('hidden');
+              if (this.elements.headerUserName) {
+                this.elements.headerUserName.textContent =
+                  this.state.loggedInUser.name || 'My Account';
+              }
+              // Mobile menu
+              this.elements.mobileLoginLink.classList.add('hidden');
+              this.elements.mobileSignupLink.classList.add('hidden');
+              this.elements.mobileAccountLink.classList.remove('hidden');
+              this.elements.logoutButtonMobile.classList.remove('hidden');
+            } else {
+              this.elements.authLinks.classList.remove('hidden');
+              this.elements.accountInfo.classList.add('hidden');
+              // Mobile menu
+              this.elements.mobileLoginLink.classList.remove('hidden');
+              this.elements.mobileSignupLink.classList.remove('hidden');
+              this.elements.mobileAccountLink.classList.add('hidden');
+              this.elements.logoutButtonMobile.classList.add('hidden');
+            }
+          },
+
+          logout() {
+            this.state.loggedInUser = null;
+            this.saveState();
+            this.showToast('You have been logged out.', 3000);
+            setTimeout(() => {
+              window.location.href = 'Homepage.html'; // Redirect to homepage after logout
+            }, 1000);
+          },
+
+          showToast(message, duration = 3000) {
+            this.elements.toastMessage.textContent = message;
+            this.elements.toast.classList.remove(
+              'opacity-0',
+              'translate-y-3',
+              'pointer-events-none'
+            );
+            this.elements.toast.classList.add(
+              'opacity-100',
+              'translate-y-0',
+              'pointer-events-auto'
+            );
+
+            setTimeout(() => {
+              this.elements.toast.classList.remove(
+                'opacity-100',
+                'translate-y-0',
+                'pointer-events-auto'
+              );
+              this.elements.toast.classList.add(
+                'opacity-0',
+                'translate-y-3',
+                'pointer-events-none'
+              );
+            }, duration);
+          },
+
+          bindEventListeners() {
+            if (this.elements.mobileMenuButton) {
+              this.elements.mobileMenuButton.addEventListener('click', () => {
+                this.elements.mobileMenu.classList.toggle('hidden');
+              });
+            }
+            this.elements.mobileDropdownToggles.forEach((toggle) => {
+              toggle.addEventListener('click', () => {
+                const submenu = toggle.nextElementSibling;
+                const icon = toggle.querySelector('svg');
+
+                // Close other open submenus
+                this.elements.mobileDropdownToggles.forEach((otherToggle) => {
+                  if (otherToggle !== toggle) {
+                    const otherSubmenu = otherToggle.nextElementSibling;
+                    const otherIcon = otherToggle.querySelector('svg');
+                    otherSubmenu.style.maxHeight = null;
+                    otherIcon.style.transform = 'rotate(0deg)';
+                  }
+                });
+
+                if (submenu.style.maxHeight) {
+                  submenu.style.maxHeight = null;
+                  icon.style.transform = 'rotate(0deg)';
+                } else {
+                  submenu.style.maxHeight = submenu.scrollHeight + 'px';
+                  icon.style.transform = 'rotate(180deg)';
+                }
+              });
+            });
+
+            // Logout buttons
+            if (this.elements.logoutButtonDesktop) {
+              this.elements.logoutButtonDesktop.addEventListener(
+                'click',
+                (e) => {
+                  e.preventDefault();
+                  this.logout();
+                }
+              );
+            }
+            if (this.elements.logoutButtonMobile) {
+              this.elements.logoutButtonMobile.addEventListener(
+                'click',
+                (e) => {
+                  e.preventDefault();
+                  this.logout();
+                }
+              );
+            }
+          },
+
+          // New function to clear the cart and store a mock order number
+          clearCartAndOrderNumber() {
+            // Simulating clearing the cart
+            this.state.cartItems = [];
+            this.saveState();
+            this.updateUI();
+
+            // Display a mock order number
+            const orderNumberElement = document.getElementById('order-number');
+            if (orderNumberElement) {
+              // Generate a simple, random-looking order number
+              const randomOrderNum = Math.floor(Math.random() * 90000) + 10000;
+              orderNumberElement.textContent = `#F4N-${randomOrderNum}`;
+            }
+          },
+        };
+        Food4NigeriaApp.init();
+      });
+    </script>
+  </body>
+</html>
